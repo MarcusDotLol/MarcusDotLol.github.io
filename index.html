@@ -3,25 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marcus.lol</title>
+    <title>Sign Up</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f8f9fa;
+            background-color: #111; /* Dark background */
+            color: #fff; /* Light text */
         }
         .container {
             max-width: 800px;
             margin: 50px auto;
             padding: 20px;
-            background-color: #fff;
+            background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent light background */
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2); /* Light shadow */
             text-align: center;
+            position: relative; /* Position for light effect */
+            overflow: hidden; /* Hide overflowing light effect */
         }
         h1 {
-            color: #333;
+            color: #eee; /* Light heading */
             margin-bottom: 20px;
         }
         input[type="text"], input[type="password"], input[type="submit"] {
@@ -31,6 +34,8 @@
             border-radius: 5px;
             border: 1px solid #ccc;
             box-sizing: border-box;
+            background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent input background */
+            color: #fff; /* Light text */
         }
         input[type="submit"] {
             background-color: #007bff;
@@ -40,10 +45,37 @@
         input[type="submit"]:hover {
             background-color: #0056b3;
         }
+
+        /* Light effect */
+        .light {
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 60%, rgba(255,255,255,0.5) 100%); /* Radial gradient for light effect */
+            animation: shine 2s infinite; /* Animation for light effect */
+        }
+
+        @keyframes shine {
+            0% {
+                transform: rotate(45deg) scale(0);
+                opacity: 0;
+            }
+            50% {
+                transform: rotate(45deg) scale(1.5);
+                opacity: 1;
+            }
+            100% {
+                transform: rotate(45deg) scale(0);
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
+        <div class="light"></div> <!-- Light effect -->
         <h1>Sign Up for Your Own Page</h1>
         <form id="signupForm">
             <input type="text" id="inviteCode" placeholder="Enter your invite code">
