@@ -154,7 +154,7 @@
             <h1>Marcus</h1>
             <p>You can DM me if I don't respond; I might be busy or sleeping. <br>
             <a href="https://www.youtube.com/watch?v=OPrLdJPmaiU" target="_blank">https://www.youtube.com/watch?v=OPrLdJPmaiU</a> <br>
-            <span id="current-time" class="current-time"></span> for me.<br>
+            It's currently <span id="current-time" class="current-time"></span> for me.<br>
             <a href="https://nohello.net/en/" target="_blank">https://nohello.net/en/</a> <br>
             If you need to talk to me, DM me on Telegram.</p>
         </div>
@@ -191,7 +191,7 @@
             document.getElementById("rain").appendChild(rainLine);
         }
 
-        // Function to get the current time in Central America
+        // Function to get the current time in Central America with AM or PM
         function getCurrentTimeCentralAmerica() {
             // Get current date and time
             var now = new Date();
@@ -199,10 +199,19 @@
             // Adjust the time to Central America timezone (UTC-6)
             now.setHours(now.getHours() - 6);
             
-            // Format the time
+            // Determine if it's AM or PM
+            var period = "AM";
             var hours = now.getHours();
+            if (hours >= 12) {
+                period = "PM";
+                if (hours > 12) {
+                    hours -= 12;
+                }
+            }
+            
+            // Format the time
             var minutes = now.getMinutes();
-            var timeString = hours + ":" + (minutes < 10 ? "0" : "") + minutes;
+            var timeString = hours + ":" + (minutes < 10 ? "0" : "") + minutes + " " + period;
             
             return timeString;
         }
