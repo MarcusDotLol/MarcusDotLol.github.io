@@ -191,14 +191,13 @@
             document.getElementById("rain").appendChild(rainLine);
         }
 
-        // Function to get the current time in Central Daylight Time (CDT) with AM or PM
-        function getCurrentTimeCDT() {
+        // Function to get the current time in Moreland time with AM or PM
+        function getCurrentTimeMoreland() {
             // Get current date and time
             var now = new Date();
             
-            // Adjust the time forward by 3 hours for Central Daylight Time (UTC-5) during daylight saving time
-            var isDST = isDaylightSavingTime(now.getFullYear(), now.getMonth() + 1, now.getDate());
-            now.setHours(now.getHours() + 3 + (isDST ? 1 : 0)); // Adjust the hours by adding 3
+            // Adjust the time backward by 5 hours for Moreland time (Central Time Zone)
+            now.setHours(now.getHours() - 5); // Adjust the hours by subtracting 5
             
             // Determine if it's AM or PM
             var period = now.getHours() >= 12 ? "PM" : "AM";
@@ -206,45 +205,17 @@
             // Format the time
             var hours = now.getHours() % 12 || 12; // Convert to 12-hour format
             var minutes = now.getMinutes();
-            var timeString = hours + ":" + (minutes < 10 ? "0" : "") + minutes + " " + period + " CDT";
+            var timeString = hours + ":" + (minutes < 10 ? "0" : "") + minutes + " " + period + " CT";
             
             return timeString;
-        }
-
-        // Function to check if a given date is in daylight saving time
-        function isDaylightSavingTime(year, month, day) {
-            // Create a date object for the given date
-            var date = new Date(year, month - 1, day);
-            
-            // Get the date of the last Sunday in October
-            var lastSundayOctober = getLastSundayOfMonth(year, 10);
-            
-            // Get the date of the first Sunday in April
-            var firstSundayApril = getFirstSundayOfMonth(year, 4);
-            
-            // If the date is between the first Sunday in April and the last Sunday in October, it's in DST
-            return date >= firstSundayApril && date < lastSundayOctober;
-        }
-
-        // Function to get the date of the last Sunday of a given month
-        function getLastSundayOfMonth(year, month) {
-            var lastDayOfMonth = new Date(year, month, 0).getDate();
-            var lastDayOfWeek = new Date(year, month - 1, lastDayOfMonth).getDay();
-            return new Date(year, month - 1, lastDayOfMonth - lastDayOfWeek);
-        }
-
-        // Function to get the date of the first Sunday of a given month
-        function getFirstSundayOfMonth(year, month) {
-            var firstDayOfMonth = new Date(year, month - 1, 1).getDay();
-            return new Date(year, month - 1, 1 + (7 - firstDayOfMonth));
         }
 
         // Update the element with the current time
         function updateCurrentTime() {
             var currentTimeElement = document.getElementById("current-time");
             if (currentTimeElement) {
-                // Update the text to include the current time in Central Daylight Time (CDT)
-                currentTimeElement.textContent = getCurrentTimeCDT();
+                // Update the text to include the current time in Moreland
+                currentTimeElement.textContent = getCurrentTimeMoreland();
             }
         }
 
@@ -256,3 +227,4 @@
     </script>
 </body>
 </html>
+
