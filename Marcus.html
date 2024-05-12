@@ -205,7 +205,7 @@
             // Format the time
             var hours = now.getHours() % 12 || 12; // Convert to 12-hour format
             var minutes = now.getMinutes();
-            var timeString = hours + ":" + (minutes < 10 ? "0" : "") + minutes + " " + period + " CT";
+            var timeString = hours + ":" + (minutes < 10 ? "0" : "") + minutes + " " + period;
             
             return timeString;
         }
