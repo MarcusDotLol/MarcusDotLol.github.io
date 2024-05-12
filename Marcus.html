@@ -1,3 +1,6 @@
+Sure, here's the full HTML code with the updated JavaScript function to display the current time in Central Daylight Time (CDT) with the correct offset:
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -152,7 +155,9 @@
         <div class="profile">
             <img src="profile_picture.jpg" alt="Profile Picture">
             <h1>Marcus</h1>
-            <p>You can DM me if I don't respond; I might be busy or sleeping. <br>
+            <p>You can DM me if I don't respond; I might be busy or
+
+ sleeping. <br>
             <a href="https://www.youtube.com/watch?v=OPrLdJPmaiU" target="_blank">https://www.youtube.com/watch?v=OPrLdJPmaiU</a> <br>
             It's currently <span id="current-time" class="current-time"></span> for me.<br>
             <a href="https://nohello.net/en/" target="_blank">https://nohello.net/en/</a> <br>
@@ -198,7 +203,7 @@
             
             // Adjust the time to Central Daylight Time (UTC-5) during daylight saving time
             var isDST = isDaylightSavingTime(now.getFullYear(), now.getMonth() + 1, now.getDate());
-            now.setHours(now.getHours() - 5 + (isDST ? 1 : 0));
+            now.setHours(now.getHours() - 4 + (isDST ? 1 : 0)); // Adjust the hours by subtracting 4
             
             // Determine if it's AM or PM
             var period = now.getHours() >= 12 ? "PM" : "AM";
@@ -256,3 +261,6 @@
     </script>
 </body>
 </html>
+```
+
+This code will display the current time in Central Daylight Time (CDT), considering the 4-hour offset behind your local time.
