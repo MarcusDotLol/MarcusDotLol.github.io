@@ -20,12 +20,11 @@
             padding: 20px;
             background-color: transparent;
             color: #fff;
-            position: relative; /* Added */
+            position: relative;
         }
         .profile {
             text-align: center;
-            padding: 40px 20px;
-            position: relative; /* Removed */
+            padding: 20px;
         }
         .profile img {
             width: 150px;
@@ -34,13 +33,12 @@
             border: 4px solid #fff;
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
             margin-bottom: 20px;
-            display: block; /* Added */
-            margin: 0 auto; /* Added */
+            display: block;
+            margin: 0 auto;
         }
         .profile h1 {
             font-size: 32px;
             margin-bottom: 10px;
-            display: inline;
             position: relative;
         }
         .profile h1:hover .star-badge {
@@ -62,7 +60,7 @@
         .star-badge {
             position: absolute;
             top: 0;
-            left: 100%;
+            left: 50%;
             transform: translate(-50%, -50%);
             opacity: 0;
             transition: opacity 0.3s, transform 0.3s;
@@ -204,21 +202,21 @@
     </div>
     <div class="container" id="profile-container" style="display: none;">
         <div class="profile">
-            <!-- Owner Badge -->
-            <h1>Marcus <span class="star-badge"><i class="fas fa-star"></i></span></h1>
-
             <!-- Profile Content -->
             <img src="https://github.com/DamageCoding/Marcus/blob/main/Images/Marcus.png?raw=true" alt="Profile Picture">
+            <h1><span class="star-badge"><i class="fas fa-star"></i></span></h1>
+            <h2>Marcus</h2>
             <p>You can DM me if I don't respond; I might be busy or sleeping. <br>
             <a href="https://www.youtube.com/watch?v=OPrLdJPmaiU" target="_blank">https://www.youtube.com/watch?v=OPrLdJPmaiU</a> <br>
             I need to admit it <br>
             <a href="https://nohello.net/en/" target="_blank">https://nohello.net/en/</a> <br>
             If you need to talk to me, DM me on Telegram.</p>
-        </div>
-        <div class="social-links">
-            <a href="https://t.me/Marcuswillbemarcus" target="_blank"><i class="fab fa-telegram"></i></a>
-            <a href="https://www.tiktok.com/@marcuswillbemarcus" target="_blank"><i class="fab fa-tiktok"></i></a>
-            <!-- Add more social links as needed -->
+            <!-- Social Links -->
+            <div class="social-links">
+                <a href="https://t.me/Marcuswillbemarcus" target="_blank"><i class="fab fa-telegram"></i></a>
+                <a href="https://www.tiktok.com/@marcuswillbemarcus" target="_blank"><i class="fab fa-tiktok"></i></a>
+                <!-- Add more social links as needed -->
+            </div>
         </div>
     </div>
     <div id="hosted-text" onclick="redirectToMarcus()">
