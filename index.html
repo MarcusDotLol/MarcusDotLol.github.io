@@ -82,6 +82,8 @@
         <h1>Welcome!</h1>
         <a href="https://marcus-lol.github.io/Marcus/" class="button">Contact Owner</a>
         <button onclick="showSignupForm()" class="button">Sign Up</button>
+        <!-- Discord button -->
+        <button onclick="joinDiscord()" class="button">Join Our Discord</button>
     </div>
 
     <div class="container">
@@ -137,6 +139,13 @@
                 document.getElementById('message').textContent = 'Invalid invite code. Please try again.';
             }
         });
+
+        // Function to handle joining Discord
+        function joinDiscord() {
+            // Redirect users to your Discord invite link
+            window.location.href = 'https://discord.gg/UhmPxQVTDa';
+        }
     </script>
 </body>
 </html>
+
