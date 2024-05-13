@@ -118,8 +118,12 @@
                 inviteCodes = inviteCodes.filter(code => code !== inviteCode);
 
                 // Clear the screen
-                document.querySelector('.container').classList.remove('show');
                 document.querySelector('.options').style.display = 'none';
+
+                // Show the message container
+                const messageContainer = document.querySelector('.container');
+                messageContainer.classList.add('show');
+                messageContainer.style.display = 'block'; // Ensure container is visible
 
                 // Display message
                 document.getElementById('message').textContent = "Redirecting you to the owner's page. Please contact them to get your page.";
