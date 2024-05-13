@@ -1,3 +1,6 @@
+Certainly! Below is the updated HTML code with a blank screen displaying the message "Redirecting you to the owner's page. Please contact them to get your page." in yellow big text:
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -71,13 +74,15 @@
         #message {
             margin-top: 10px;
             color: #ffd700; /* Golden text */
+            font-size: 24px; /* Big text */
+            text-align: center;
         }
     </style>
 </head>
 <body>
     <div class="options">
         <h1>Welcome!</h1>
-        <a href="https://marcus-lol.github.io/Marcus/Marcus" class="button">Contact Owner</a>
+        <a href="https://marcus-lol.github.io/Marcus/" class="button">Contact Owner</a>
         <button onclick="showSignupForm()" class="button">Sign Up</button>
     </div>
 
@@ -88,7 +93,7 @@
             <input type="password" id="password" placeholder="Enter your password">
             <input type="submit" value="Sign Up">
         </form>
-        <p id="message"></p>
+        <p id="message" style="color: yellow; font-size: 24px; text-align: center;">Redirecting you to the owner's page. Please contact them to get your page.</p>
     </div>
 
     <script>
@@ -133,3 +138,4 @@
     </script>
 </body>
 </html>
+```
