@@ -10,17 +10,34 @@
             margin: 0;
             padding: 0;
             overflow: hidden;
+            background-color: #000; /* Black background */
         }
         
-        /* Dark overlay */
-        .overlay {
+        /* Spotlight effect */
+        .spotlight {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black */
+            top: 50%;
+            left: 50%;
+            width: 300px; /* Width of spotlight */
+            height: 300px; /* Height of spotlight */
+            border-radius: 50%; /* Circular shape */
+            background: radial-gradient(circle, transparent 10%, rgba(0,0,0,0.9) 50%); /* Radial gradient to create spotlight effect */
+            transform: translate(-50%, -50%);
+            pointer-events: none; /* Allow clicks to pass through the spotlight */
             z-index: 9999; /* Ensure it's above everything else */
+            animation: flicker 2s infinite; /* Animation for flickering effect */
+        }
+        
+        @keyframes flicker {
+            0% {
+                opacity: 0.9;
+            }
+            50% {
+                opacity: 0.8;
+            }
+            100% {
+                opacity: 0.9;
+            }
         }
         
         /* Sign-up container */
@@ -36,7 +53,7 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            z-index: 10000; /* Ensure it's above the overlay */
+            z-index: 10000; /* Ensure it's above the spotlight */
         }
         
         /* Rest of your existing CSS... */
@@ -44,7 +61,6 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f5f5f5; /* Light background */
             color: #333; /* Dark text */
             display: flex;
             justify-content: center;
@@ -93,7 +109,7 @@
     </style>
 </head>
 <body>
-    <div class="overlay"></div>
+    <div class="spotlight"></div>
     <div class="container">
         <h1>Sign Up</h1>
         <form id="signupForm">
@@ -131,4 +147,3 @@
     </script>
 </body>
 </html>
-
