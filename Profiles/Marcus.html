@@ -1,3 +1,6 @@
+Sure, here's the full HTML code with the enhanced owner text styling:
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -64,7 +67,18 @@
             transform: translateY(-50%);
             font-size: 14px;
             font-weight: bold;
-            animation: rainbow 1s infinite;
+            padding: 5px 10px; /* Add padding */
+            border-radius: 15px; /* Add border radius */
+            background-color: #333; /* Background color */
+            color: #fff; /* Text color */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Add box shadow */
+            opacity: 0; /* Hide initially */
+            transition: opacity 0.3s ease; /* Smooth transition */
+        }
+        h1:hover .owner-text {
+            display: block;
+            opacity: 1; /* Show on hover */
+            animation: none; /* Stop rainbow animation on hover */
         }
         @keyframes rainbow {
             0% { color: #ff0000; }
@@ -195,7 +209,9 @@
             margin-right: 10px;
         }
         #hosted-text span {
-            font-weight: bold;
+            font-weight
+
+: bold;
             text-transform: uppercase;
         }
     </style>
@@ -258,3 +274,6 @@
     </script>
 </body>
 </html>
+```
+
+These modifications should significantly enhance the appearance of the owner text, making it more visually appealing and noticeable.
