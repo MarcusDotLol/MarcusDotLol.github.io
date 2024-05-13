@@ -16,7 +16,7 @@
             align-items: center;
             height: 100vh;
         }
-        .container {
+        .options {
             text-align: center;
         }
         .button {
@@ -33,57 +33,67 @@
         .button:hover {
             background-color: #0056b3;
         }
-        .step-container {
-            display: none;
+        .container {
+            display: none; /* Hide by default */
         }
-        .step-container.active {
-            display: block;
+        .container.show {
+            display: block; /* Show when sign-up form is activated */
         }
     </style>
 </head>
 <body>
+    <div class="options">
+        <h1>Welcome!</h1>
+        <a href="https://marcus-lol.github.io/Marcus/" class="button">Contact Owner</a>
+        <button onclick="showSignupForm()" class="button">Sign Up</button>
+    </div>
+
     <div class="container">
-        <div class="step-container" id="step1">
-            <h1>Step 1: Choose a Username</h1>
+        <form id="signupForm">
+            <input type="text" id="inviteCode" placeholder="Enter your invite code">
+            <br>
             <input type="text" id="username" placeholder="Enter your desired username">
             <br>
-            <button onclick="nextStep()">Next</button>
-        </div>
-
-        <div class="step-container" id="step2">
-            <h1>Step 2: Enter Invite Code</h1>
-            <input type="text" id="inviteCode" placeholder="Enter invite code">
+            <input type="password" id="password" placeholder="Enter your password">
             <br>
-            <button onclick="verifyInvite()">Verify</button>
-            <br>
-            <p id="inviteMessage"></p>
-        </div>
-
-        <div class="step-container" id="step3">
-            <h1>Step 3: Success!</h1>
-            <p>Congratulations! You've successfully signed up.</p>
-            <p>Contact the owner on Telegram: <a href="https://t.me/Marcuswillbemarcus">Marcuswillbemarcus</a></p>
-        </div>
+            <input type="submit" value="Sign Up">
+        </form>
+        <p id="message"></p>
     </div>
 
     <script>
-        let currentStep = 1;
+        // Mock database of invite codes
+        let inviteCodes = ['abcd1234', 'efgh5678', 'ijkl9012'];
 
-        function nextStep() {
-            document.getElementById(`step${currentStep}`).classList.remove('active');
-            currentStep++;
-            document.getElementById(`step${currentStep}`).classList.add('active');
+        function showSignupForm() {
+            // Hide options and show sign-up form
+            document.querySelector('.options').style.display = 'none';
+            document.querySelector('.container').classList.add('show');
         }
 
-        function verifyInvite() {
+        // Function to handle form submission
+        document.getElementById('signupForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent form submission
+
+            // Get input values
             const inviteCode = document.getElementById('inviteCode').value.trim();
-            if (inviteCode === 'YOUR_INVITE_CODE') {
-                nextStep();
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value.trim();
+
+            // Check if invite code is valid
+            if (inviteCodes.includes(inviteCode)) {
+                // Remove the used invite code
+                inviteCodes = inviteCodes.filter(code => code !== inviteCode);
+
+                // Perform signup process (can be AJAX call to server)
+                // For now, just display a success message and redirect
+                document.getElementById('message').textContent = `Signed up successfully! Your username is: ${username}`;
+                // Redirect to contact page
+                window.location.href = 'https://marcus-lol.github.io/Marcus/';
             } else {
-                document.getElementById('inviteMessage').textContent = 'Invalid invite code. Please try again.';
+                document.getElementById('message').textContent = 'Invalid invite code. Please try again.';
             }
-        }
+        });
     </script>
 </body>
 </html>
-
