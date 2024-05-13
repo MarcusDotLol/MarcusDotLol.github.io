@@ -77,7 +77,7 @@
 <body>
     <div class="options">
         <h1>Welcome!</h1>
-        <a href="https://marcus-lol.github.io/Marcus/" class="button">Contact Owner</a>
+        <a href="https://marcus-lol.github.io/Marcus/Marcus" class="button">Contact Owner</a>
         <button onclick="showSignupForm()" class="button">Sign Up</button>
     </div>
 
@@ -115,8 +115,17 @@
                 // Remove the used invite code
                 inviteCodes = inviteCodes.filter(code => code !== inviteCode);
 
-                // Display message instead of redirecting
+                // Clear the screen
+                document.querySelector('.container').classList.remove('show');
+                document.querySelector('.options').style.display = 'none';
+
+                // Display message
                 document.getElementById('message').textContent = "Redirecting you to the owner's page. Please contact them to get your page.";
+
+                // Redirect after 5 seconds
+                setTimeout(function() {
+                    window.location.href = 'https://marcus-lol.github.io/Marcus/Marcus';
+                }, 5000);
             } else {
                 document.getElementById('message').textContent = 'Invalid invite code. Please try again.';
             }
