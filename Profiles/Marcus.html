@@ -1,6 +1,3 @@
-Sure, here's the full HTML code with the enhanced owner text styling:
-
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -140,6 +137,16 @@ Sure, here's the full HTML code with the enhanced owner text styling:
                 opacity: 1;
             }
         }
+        .thunder {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #fff;
+            z-index: -1;
+            display: none;
+        }
         #overlay {
             position: fixed;
             top: 0;
@@ -244,7 +251,9 @@ Sure, here's the full HTML code with the enhanced owner text styling:
         <span>Hosted by Marcus.lol</span>
     </div>
     <div class="rain" id="rain"></div>
+    <div class="thunder" id="thunder"></div>
     <audio id="backgroundAudio" src="Marcus.mp3" loop hidden></audio>
+    <audio id="thunderSound" src="thunder.mp3" hidden></audio>
     <script>
         function revealProfile() {
             var overlay = document.getElementById("overlay");
@@ -269,11 +278,25 @@ Sure, here's the full HTML code with the enhanced owner text styling:
             document.getElementById("rain").appendChild(rainLine);
         }
 
-        // Call createRainLine() function
-        createRainLine();
+        // Function to create thunder
+        function createThunder() {
+            var thunderSound = document.getElementById("thunderSound");
+            thunderSound.currentTime = 0; // Rewind to start of audio
+            thunderSound.play();
+
+            var thunderElement = document.getElementById("thunder");
+            thunderElement.style.display = "block";
+
+            setTimeout(function() {
+                thunderElement.style.display = "none";
+            }, Math.random() * 200 + 200); // Adjust duration of thunder flash
+        }
+
+        // Call createRainLine() function at intervals
+        setInterval(createRainLine, 1000); // Adjust interval as needed
+
+        // Call createThunder() function at random intervals
+        setInterval(createThunder, Math.random() * 10000 + 5000); // Adjust interval as needed
     </script>
 </body>
 </html>
-```
-
-These modifications should significantly enhance the appearance of the owner text, making it more visually appealing and noticeable.
