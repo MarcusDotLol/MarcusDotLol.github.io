@@ -263,6 +263,35 @@
         function redirectToMarcus() {
             window.location.href = "https://damagecoding.github.io/Marcus/";
         }
-    <script>
+
+        function createRainLine() {
+            var rainLine = document.createElement("div");
+            rainLine.className = "rain-line";
+            rainLine.style.left = Math.random() * 100 + "%";
+            rainLine.style.animationDuration = (Math.random() * 2 + 1) + "s";
+            rainLine.style.animationDelay = (Math.random() * 2) + "s";
+            document.getElementById("rain").appendChild(rainLine);
+        }
+
+        // Function to create thunder
+        function createThunder() {
+            var thunderSound = document.getElementById("thunderSound");
+            thunderSound.currentTime = 0; // Rewind to start of audio
+            thunderSound.play();
+
+            var thunderElement = document.getElementById("thunder");
+            thunderElement.style.display = "block";
+
+            setTimeout(function() {
+                thunderElement.style.display = "none";
+            }, Math.random() * 200 + 200); // Adjust duration of thunder flash
+        }
+
+        // Call createRainLine() function at intervals
+        setInterval(createRainLine, 1000); // Adjust interval as needed
+
+        // Call createThunder() function at random intervals
+        setInterval(createThunder, Math.random() * 10000 + 5000); // Adjust interval as needed
+    </script>
 </body>
 </html>
