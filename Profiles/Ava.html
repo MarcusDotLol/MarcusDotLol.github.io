@@ -20,10 +20,11 @@
             padding: 20px;
             background-color: transparent;
             color: #fff;
+            position: relative;
         }
         .profile {
             text-align: center;
-            padding: 40px 20px;
+            padding: 20px;
         }
         .profile img {
             width: 150px;
@@ -32,10 +33,59 @@
             border: 4px solid #fff;
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
             margin-bottom: 20px;
+            display: block;
+            margin: 0 auto;
         }
         .profile h1 {
             font-size: 32px;
             margin-bottom: 10px;
+            position: relative;
+            display: inline-block;
+        }
+        .star-badge {
+            position: absolute;
+            top: 50%;
+            left: calc(100% + 10px);
+            transform: translateY(-50%);
+        }
+        .star-badge i {
+            font-size: 20px;
+            color: gold;
+            cursor: pointer;
+        }
+        .star-badge i:hover + .owner-text {
+            animation: rainbow 1s infinite;
+        }
+        .owner-text {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: calc(100% + 20px);
+            transform: translateY(-50%);
+            font-size: 14px;
+            font-weight: bold;
+            padding: 5px 10px; /* Add padding */
+            border-radius: 15px; /* Add border radius */
+            background-color: #333; /* Background color */
+            color: #fff; /* Text color */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Add box shadow */
+            opacity: 0; /* Hide initially */
+            transition: opacity 0.3s ease; /* Smooth transition */
+        }
+        h1:hover .owner-text {
+            display: block;
+            opacity: 1; /* Show on hover */
+            animation: none; /* Stop rainbow animation on hover */
+        }
+        @keyframes rainbow {
+            0% { color: #ff0000; }
+            14% { color: #ff7700; }
+            28% { color: #ffdd00; }
+            42% { color: #00ff00; }
+            57% { color: #0000ff; }
+            71% { color: #8400ff; }
+            85% { color: #ff00ff; }
+            100% { color: #ff0000; }
         }
         .profile h2 {
             font-size: 24px;
@@ -86,6 +136,16 @@
                 transform: translateY(110vh);
                 opacity: 1;
             }
+        }
+        .thunder {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #fff;
+            z-index: -1;
+            display: none;
         }
         #overlay {
             position: fixed;
@@ -156,7 +216,9 @@
             margin-right: 10px;
         }
         #hosted-text span {
-            font-weight: bold;
+            font-weight
+
+: bold;
             text-transform: uppercase;
         }
     </style>
@@ -168,7 +230,7 @@
             <div class="warning">*MUSIC WILL BE PLAYED*</div>
         </div>
     </div>
-    <div class="container" id="profile-container" style="display: none;">
+      <div class="container" id="profile-container" style="display: none;">
         <div class="profile">
             <img src="https://github.com/DamageCoding/Marcus/blob/main/Images/Ava.png?raw=true" alt="Profile Picture">
             <h1>Ava</h1>
@@ -188,7 +250,9 @@
         <span>Hosted by Marcus.lol</span>
     </div>
     <div class="rain" id="rain"></div>
-    <audio id="backgroundAudio" src="Ava.mp3" loop hidden></audio>
+    <div class="thunder" id="thunder"></div>
+    <audio id="backgroundAudio" src="Marcus.mp3" loop hidden></audio>
+    <audio id="thunderSound" src="thunder.mp3" hidden></audio>
     <script>
         function revealProfile() {
             var overlay = document.getElementById("overlay");
@@ -212,6 +276,26 @@
             rainLine.style.animationDelay = (Math.random() * 2) + "s";
             document.getElementById("rain").appendChild(rainLine);
         }
+
+        // Function to create thunder
+        function createThunder() {
+            var thunderSound = document.getElementById("thunderSound");
+            thunderSound.currentTime = 0; // Rewind to start of audio
+            thunderSound.play();
+
+            var thunderElement = document.getElementById("thunder");
+            thunderElement.style.display = "block";
+
+            setTimeout(function() {
+                thunderElement.style.display = "none";
+            }, Math.random() * 200 + 200); // Adjust duration of thunder flash
+        }
+
+        // Call createRainLine() function at intervals
+        setInterval(createRainLine, 1000); // Adjust interval as needed
+
+        // Call createThunder() function at random intervals
+        setInterval(createThunder, Math.random() * 10000 + 5000); // Adjust interval as needed
     </script>
 </body>
 </html>
