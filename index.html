@@ -3,87 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up</title>
+    <title>Welcome</title>
     <style>
-        /* General styling */
-        body {
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            background-color: #000; /* Black background */
-        }
-        
-        /* Spotlight effect */
-        .spotlight {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            width: 300px; /* Width of spotlight */
-            height: 300px; /* Height of spotlight */
-            border-radius: 50%; /* Circular shape */
-            background: radial-gradient(circle, transparent 10%, rgba(0,0,0,0.9) 50%); /* Radial gradient to create spotlight effect */
-            transform: translate(-50%, -50%);
-            pointer-events: none; /* Allow clicks to pass through the spotlight */
-            z-index: 9999; /* Ensure it's above everything else */
-            animation: flicker 2s infinite; /* Animation for flickering effect */
-        }
-        
-        @keyframes flicker {
-            0% {
-                opacity: 0.9;
-            }
-            50% {
-                opacity: 0.8;
-            }
-            100% {
-                opacity: 0.9;
-            }
-        }
-        
-        /* Sign-up container */
-        .container {
-            background-color: #fff; /* White container */
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            max-width: 400px;
-            width: 100%;
-            text-align: center;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            z-index: 10000; /* Ensure it's above the spotlight */
-        }
-        
-        /* Rest of your existing CSS... */
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            color: #333; /* Dark text */
+            background-color: #111; /* Dark background */
+            color: #fff; /* Light text */
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
         }
-        
-        h1 {
-            margin-bottom: 20px;
-            color: #007bff; /* Primary color */
+        .container {
+            text-align: center;
         }
-        
-        input {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
-        
         .button {
             padding: 10px 20px;
+            margin: 10px;
             background-color: #007bff;
             color: #fff;
             border: none;
@@ -91,59 +29,61 @@
             cursor: pointer;
             text-decoration: none;
             display: inline-block;
-            transition: background-color 0.3s ease;
         }
-        
         .button:hover {
             background-color: #0056b3;
         }
-        
-        .message {
-            margin-top: 20px;
-            color: #28a745; /* Success color */
+        .step-container {
+            display: none;
         }
-        
-        .error {
-            color: #dc3545; /* Error color */
+        .step-container.active {
+            display: block;
         }
     </style>
 </head>
 <body>
-    <div class="spotlight"></div>
     <div class="container">
-        <h1>Sign Up</h1>
-        <form id="signupForm">
-            <input type="text" id="inviteCode" placeholder="Invite Code" required>
-            <input type="text" id="username" placeholder="Username" required>
-            <input type="password" id="password" placeholder="Password" required>
-            <button type="submit" class="button">Sign Up</button>
-            <p id="message" class="message"></p>
-        </form>
+        <div class="step-container" id="step1">
+            <h1>Step 1: Choose a Username</h1>
+            <input type="text" id="username" placeholder="Enter your desired username">
+            <br>
+            <button onclick="nextStep()">Next</button>
+        </div>
+
+        <div class="step-container" id="step2">
+            <h1>Step 2: Enter Invite Code</h1>
+            <input type="text" id="inviteCode" placeholder="Enter invite code">
+            <br>
+            <button onclick="verifyInvite()">Verify</button>
+            <br>
+            <p id="inviteMessage"></p>
+        </div>
+
+        <div class="step-container" id="step3">
+            <h1>Step 3: Success!</h1>
+            <p>Congratulations! You've successfully signed up.</p>
+            <p>Contact the owner on Telegram: <a href="https://t.me/Marcuswillbemarcus">Marcuswillbemarcus</a></p>
+        </div>
     </div>
 
     <script>
-        // Mock database of invite codes
-        const inviteCodes = ['abcd1234', 'efgh5678', 'ijkl9012'];
+        let currentStep = 1;
 
-        // Function to handle form submission
-        document.getElementById('signupForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent form submission
+        function nextStep() {
+            document.getElementById(`step${currentStep}`).classList.remove('active');
+            currentStep++;
+            document.getElementById(`step${currentStep}`).classList.add('active');
+        }
 
-            // Get input values
+        function verifyInvite() {
             const inviteCode = document.getElementById('inviteCode').value.trim();
-            const username = document.getElementById('username').value.trim();
-            const password = document.getElementById('password').value.trim();
-
-            // Check if invite code is valid
-            if (inviteCodes.includes(inviteCode)) {
-                // Perform signup process (can be AJAX call to server)
-                // For now, just display a success message
-                document.getElementById('message').textContent = `Signed up successfully! Your username is: ${username}`;
+            if (inviteCode === 'YOUR_INVITE_CODE') {
+                nextStep();
             } else {
-                document.getElementById('message').textContent = 'Invalid invite code. Please try again.';
-                document.getElementById('message').classList.add('error');
+                document.getElementById('inviteMessage').textContent = 'Invalid invite code. Please try again.';
             }
-        });
+        }
     </script>
 </body>
 </html>
+
