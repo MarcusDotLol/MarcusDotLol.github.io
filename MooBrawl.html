@@ -140,6 +140,27 @@
             color: #ff0000;
             margin-top: 20px;
         }
+
+        #hosted-text {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            font-size: 16px;
+            color: #fff;
+            opacity: 0.8;
+            animation: glow 1s ease-in-out infinite alternate; /* Apply the glow animation */
+        }
+
+        @keyframes glow {
+            from {
+                opacity: 0.5;
+                text-shadow: 0 0 10px #00f, 0 0 20px #00f, 0 0 30px #00f; /* Add glow effect */
+            }
+            to {
+                opacity: 1;
+                text-shadow: 0 0 20px #00f, 0 0 30px #00f, 0 0 40px #00f, 0 0 70px #00f; /* Increase glow */
+            }
+        }
     </style>
 </head>
 <body>
@@ -161,6 +182,10 @@
             <a href="https://www.youtube.com/@moobrawl" target="_blank"><i class="fab fa-youtube"></i></a>
             <!-- Add more social links as needed -->
         </div>
+    </div>
+    <div id="hosted-text">
+        <img src="icon.png" alt="Hosted icon" style="vertical-align: middle; width: 20px; height: auto; margin-right: 5px;">
+        Hosted by Marcus.lol
     </div>
     <div class="rain" id="rain"></div>
     <audio id="backgroundAudio" src="tek-it-sped-up-official-audio.mp3" loop hidden></audio>
@@ -189,40 +214,6 @@
             // Append the rain line to the rain container
             document.getElementById("rain").appendChild(rainLine);
         }
-
-        // Function to get the current time in Moreland time with AM or PM
-        function getCurrentTimeMoreland() {
-            // Get current date and time
-            var now = new Date();
-            
-            // Adjust the time backward by 5 hours for Moreland time (Central Time Zone)
-            now.setHours(now.getHours() - 5); // Adjust the hours by subtracting 5
-            
-            // Determine if it's AM or PM
-            var period = now.getHours() >= 12 ? "PM" : "AM";
-            
-            // Format the time
-            var hours = now.getHours() % 12 || 12; // Convert to 12-hour format
-            var minutes = now.getMinutes();
-            var timeString = hours + ":" + (minutes < 10 ? "0" : "") + minutes + " " + period;
-            
-            return timeString;
-        }
-
-        // Update the element with the current time
-        function updateCurrentTime() {
-            var currentTimeElement = document.getElementById("current-time");
-            if (currentTimeElement) {
-                // Update the text to include the current time in Moreland
-                currentTimeElement.textContent = getCurrentTimeMoreland();
-            }
-        }
-
-        // Call the function once to display the initial time
-        updateCurrentTime();
-
-        // Optionally, you can update the time periodically
-        setInterval(updateCurrentTime, 1000); // Update every second
     </script>
 </body>
 </html>
