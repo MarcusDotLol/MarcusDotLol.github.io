@@ -40,8 +40,9 @@
             font-size: 32px;
             margin-bottom: 10px;
             position: relative;
+            display: inline-block;
         }
-        .profile h1 .star-badge {
+        .star-badge {
             position: absolute;
             top: 50%;
             left: calc(100% + 10px);
@@ -50,6 +51,30 @@
         .star-badge i {
             font-size: 20px;
             color: gold;
+            cursor: pointer;
+        }
+        .star-badge i:hover + .owner-text {
+            animation: rainbow 1s infinite;
+        }
+        .owner-text {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: calc(100% + 20px);
+            transform: translateY(-50%);
+            font-size: 14px;
+            font-weight: bold;
+            animation: rainbow 1s infinite;
+        }
+        @keyframes rainbow {
+            0% { color: #ff0000; }
+            14% { color: #ff7700; }
+            28% { color: #ffdd00; }
+            42% { color: #00ff00; }
+            57% { color: #0000ff; }
+            71% { color: #8400ff; }
+            85% { color: #ff00ff; }
+            100% { color: #ff0000; }
         }
         .profile h2 {
             font-size: 24px;
@@ -186,19 +211,17 @@
         <div class="profile">
             <!-- Profile Content -->
             <img src="https://github.com/DamageCoding/Marcus/blob/main/Images/Marcus.png?raw=true" alt="Profile Picture">
-            <h1>Marcus<span class="star-badge"><i class="fas fa-star"></i></span></h1>
-            <h2>Marcus</h2>
+            <h1>Marcus <span class="star-badge" onmouseover="this.nextElementSibling.style.display='block'" onmouseout="this.nextElementSibling.style.display='none'"><i class="fas fa-star"></i></span><span class="owner-text">Owner</span></h1>
+            <h2>Title or Tagline</h2>
             <p>You can DM me if I don't respond; I might be busy or sleeping. <br>
             <a href="https://www.youtube.com/watch?v=OPrLdJPmaiU" target="_blank">https://www.youtube.com/watch?v=OPrLdJPmaiU</a> <br>
-            I need to admit it <br>
-            <a href="https://nohello.net/en/" target="_blank">https://nohello.net/en/</a> <br>
             If you need to talk to me, DM me on Telegram.</p>
-            <!-- Social Links -->
-            <div class="social-links">
-                <a href="https://t.me/Marcuswillbemarcus" target="_blank"><i class="fab fa-telegram"></i></a>
-                <a href="https://www.tiktok.com/@marcuswillbemarcus" target="_blank"><i class="fab fa-tiktok"></i></a>
-                <!-- Add more social links as needed -->
-            </div>
+            <!-- End of Profile Content -->
+        </div>
+        <div class="social-links">
+            <a href="https://t.me/Marcuswillbemarcus" target="_blank"><i class="fab fa-telegram"></i></a>
+            <a href="https://www.tiktok.com/@marcuswillbemarcus" target="_blank"><i class="fab fa-tiktok"></i></a>
+            <!-- Add more social links as needed -->
         </div>
     </div>
     <div id="hosted-text" onclick="redirectToMarcus()">
