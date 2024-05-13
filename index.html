@@ -18,6 +18,7 @@
         }
         .options {
             text-align: center;
+            margin-bottom: 20px;
         }
         .button {
             padding: 10px 20px;
@@ -35,9 +36,41 @@
         }
         .container {
             display: none; /* Hide by default */
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
         .container.show {
             display: block; /* Show when sign-up form is activated */
+        }
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: none;
+            border-radius: 5px;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #fff;
+        }
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        #message {
+            margin-top: 10px;
+            color: #ffd700; /* Golden text */
         }
     </style>
 </head>
@@ -51,11 +84,8 @@
     <div class="container">
         <form id="signupForm">
             <input type="text" id="inviteCode" placeholder="Enter your invite code">
-            <br>
             <input type="text" id="username" placeholder="Enter your desired username">
-            <br>
             <input type="password" id="password" placeholder="Enter your password">
-            <br>
             <input type="submit" value="Sign Up">
         </form>
         <p id="message"></p>
@@ -85,11 +115,8 @@
                 // Remove the used invite code
                 inviteCodes = inviteCodes.filter(code => code !== inviteCode);
 
-                // Perform signup process (can be AJAX call to server)
-                // For now, just display a success message and redirect
-                document.getElementById('message').textContent = `Signed up successfully! Your username is: ${username}`;
-                // Redirect to contact page
-                window.location.href = 'https://marcus-lol.github.io/Marcus/';
+                // Display message instead of redirecting
+                document.getElementById('message').textContent = "Redirecting you to the owner's page. Please contact them to get your page.";
             } else {
                 document.getElementById('message').textContent = 'Invalid invite code. Please try again.';
             }
