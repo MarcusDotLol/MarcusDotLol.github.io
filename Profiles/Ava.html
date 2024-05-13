@@ -17,6 +17,26 @@
             background-position: center;
             color: black;
         }
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            cursor: pointer;
+        }
+        .overlay-content {
+            text-align: center;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
         .container {
             max-width: 800px;
             margin: 50px auto;
@@ -24,6 +44,10 @@
             background-color: rgba(255, 255, 255, 0.8);
             color: black;
             border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        .profile {
+            text-align: center;
         }
         .profile img {
             width: 150px;
@@ -32,25 +56,19 @@
             border: 4px solid #fff;
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
             margin-bottom: 20px;
-            display: block;
-            margin: 0 auto;
         }
         .profile h1 {
             font-size: 32px;
             margin-bottom: 10px;
-            position: relative;
-            display: inline-block;
             font-weight: bold;
-            color: black;
-        }
-        .owner-text {
-            font-weight: bold;
-            font-size: 14px;
-            color: black;
         }
         .profile p {
             font-size: 18px;
-            color: black;
+            line-height: 1.6;
+        }
+        .profile a {
+            color: #007bff;
+            text-decoration: none;
             font-weight: bold;
         }
         .social-links {
@@ -58,14 +76,14 @@
             margin-top: 20px;
         }
         .social-links a {
-            color: black;
+            color: #007bff;
             font-size: 24px;
             margin: 0 10px;
             text-decoration: none;
             transition: color 0.3s ease;
         }
         .social-links a:hover {
-            color: #007bff;
+            color: #0056b3;
         }
         #hosted-text {
             position: fixed;
@@ -97,14 +115,20 @@
     </style>
 </head>
 <body>
-    <div class="container" id="profile-container">
+    <div class="overlay" onclick="revealProfile()">
+        <div class="overlay-content">
+            <h2>CLICK HERE</h2>
+            <p>*MUSIC WILL BE PLAYED*</p>
+        </div>
+    </div>
+    <div class="container" id="profile-container" style="display: none;">
         <div class="profile">
             <img src="https://github.com/DamageCoding/Marcus/blob/main/Images/Ava.png?raw=true" alt="Profile Picture">
             <h1>Ava</h1>
-            <p>I'm A Sweetie What can i say? <br>
-            Yes i'm 14 chill.<br>
-            <a href="https://nohello.net/en/" target="_blank">Don't Just say hello</a> <br>
-            My Dms are open sweetie.</p>
+            <p>I'm A Sweetie What can I say?<br>
+            Yes, I'm 14, chill.<br>
+            <a href="https://nohello.net/en/" target="_blank">Don't Just say hello</a><br>
+            My DMs are open sweetie.</p>
         </div>
         <div class="social-links">
             <!-- Add social links here -->
@@ -115,9 +139,17 @@
         <span>Hosted by Marcus.lol</span>
     </div>
     <script>
+        function revealProfile() {
+            var overlay = document.querySelector(".overlay");
+            overlay.style.display = "none";
+            document.getElementById("profile-container").style.display = "block";
+            document.getElementById("backgroundAudio").play();
+        }
+
         function redirectToMarcus() {
             window.location.href = "https://damagecoding.github.io/Marcus/";
         }
     </script>
+    <audio id="backgroundAudio" src="Ava.mp3" loop hidden></audio>
 </body>
 </html>
