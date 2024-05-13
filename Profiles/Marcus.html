@@ -1,7 +1,3 @@
-To make the "Hosted by Marcus.lol" section clickable and styled similarly to the provided example, you can modify the HTML and CSS as follows:
-
-HTML:
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,15 +11,15 @@ HTML:
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            overflow: hidden; /* Hide overflow to prevent horizontal scrollbar */
+            overflow: hidden;
             background-color: #000;
         }
         .container {
             max-width: 800px;
             margin: 50px auto;
             padding: 20px;
-            background-color: transparent; /* Set container background color to transparent */
-            color: #fff; /* Set text color to white */
+            background-color: transparent;
+            color: #fff;
         }
         .profile {
             text-align: center;
@@ -65,36 +61,32 @@ HTML:
         .social-links a:hover {
             color: #007bff;
         }
-        /* Rain animation */
         .rain {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            pointer-events: none; /* Allow clicks to pass through */
-            z-index: -1; /* Place behind other content */
+            pointer-events: none;
+            z-index: -1;
         }
-
         .rain-line {
             position: absolute;
-            width: 2px; /* Width of the rain line */
-            height: 100px; /* Height of the rain line */
-            background-color: #007bff; /* Color of the rain line */
-            animation: rain 1s linear infinite; /* Apply animation */
+            width: 2px;
+            height: 100px;
+            background-color: #007bff;
+            animation: rain 1s linear infinite;
         }
-
         @keyframes rain {
             0% {
-                transform: translateY(-100px); /* Initial position above the viewport */
-                opacity: 0; /* Start with no opacity */
+                transform: translateY(-100px);
+                opacity: 0;
             }
             100% {
-                transform: translateY(110vh); /* End position below the viewport */
-                opacity: 1; /* Full opacity */
+                transform: translateY(110vh);
+                opacity: 1;
             }
         }
-        /* Overlay styles */
         #overlay {
             position: fixed;
             top: 0;
@@ -102,14 +94,13 @@ HTML:
             width: 100%;
             height: 100%;
             background-color: rgba(0, 0, 0, 0.8);
-            z-index: 9999; /* Ensure overlay is on top of everything */
+            z-index: 9999;
             display: flex;
             justify-content: center;
             align-items: center;
             cursor: pointer;
-            transition: opacity 0.5s ease; /* Add transition for opacity */
+            transition: opacity 0.5s ease;
         }
-
         #overlay-content {
             text-align: center;
             color: #fff;
@@ -121,11 +112,9 @@ HTML:
             background-color: rgba(0, 0, 0, 0.5);
             transition: opacity 0.3s ease;
         }
-
         #overlay-content:hover {
             opacity: 1;
         }
-
         #overlay-content button {
             padding: 10px 20px;
             background-color: #007bff;
@@ -134,30 +123,41 @@ HTML:
             font-size: 18px;
             cursor: pointer;
         }
-
         #overlay-content button:hover {
             background-color: #0056b3;
         }
-
         .warning {
             text-align: center;
             color: #ff0000;
             margin-top: 20px;
         }
-
-        /* Hosted section */
-        .hosted {
-            position: absolute;
+        #hosted-text {
+            position: fixed;
             bottom: 20px;
             right: 20px;
+            font-size: 18px;
             color: #fff;
-            font-size: 14px;
-            opacity: 0.5;
-            transition: opacity 0.3s ease;
+            opacity: 0.8;
+            animation: glow 1s ease-in-out infinite alternate;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            border-radius: 25px;
+            background-color: #007bff;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            transition: opacity 0.3s, transform 0.3s;
         }
-
-        .hosted:hover {
+        #hosted-text:hover {
             opacity: 1;
+            transform: scale(1.05);
+        }
+        #hosted-text img {
+            margin-right: 10px;
+        }
+        #hosted-text span {
+            font-weight: bold;
+            text-transform: uppercase;
         }
     </style>
 </head>
@@ -174,7 +174,7 @@ HTML:
             <h1>Marcus</h1>
             <p>You can DM me if I don't respond; I might be busy or sleeping. <br>
             <a href="https://www.youtube.com/watch?v=OPrLdJPmaiU" target="_blank">https://www.youtube.com/watch?v=OPrLdJPmaiU</a> <br>
-            I need to admit it i love goldfish.<br>
+            I need to admit it i touch kids.<br>
             <a href="https://nohello.net/en/" target="_blank">https://nohello.net/en/</a> <br>
             If you need to talk to me, DM me on Telegram.</p>
         </div>
@@ -183,78 +183,36 @@ HTML:
             <!-- Add more social links as needed -->
         </div>
     </div>
-    <div class="rain" id="rain"></div>
-    <audio id="backgroundAudio" src="Marcus.mp3" loop hidden></audio>
-
-    <!-- Hosted section -->
-    <div class="hosted">
-        <a href="https://damagecoding.github.io/Marcus/" target="_blank">Hosted by Marcus.lol</a>
+    <div id="hosted-text" onclick="redirectToMarcus()">
+        <img src="https://github.com/DamageCoding/Marcus/blob/main/Images/icon.png?raw=true" alt="Hosted icon" style="vertical-align: middle; width: 24px; height: auto; margin-right: 10px;">
+        <span>Hosted by Marcus.lol</span>
     </div>
-
+    <div class="rain" id="rain"></div>
+    <audio id="backgroundAudio" src="MooBrawl.mp3" loop hidden></audio>
     <script>
         function revealProfile() {
-            var overlay = document.getElementById("
-
-overlay");
-            overlay.style.opacity = 0; // Fade out the overlay
+            var overlay = document.getElementById("overlay");
+            overlay.style.opacity = 0;
             setTimeout(function() {
-                overlay.style.display = "none"; // Hide the overlay after fading out
-            }, 500); // Adjust the time to match the transition duration
-            document.getElementById("profile-container").style.display = "block"; // Show the profile
-            document.getElementById("backgroundAudio").play(); // Play the background music
+                overlay.style.display = "none";
+            }, 500);
+            document.getElementById("profile-container").style.display = "block";
+            document.getElementById("backgroundAudio").play();
         }
 
-        // Function to generate random rain lines
+        function redirectToMarcus() {
+            window.location.href = "https://damagecoding.github.io/Marcus/";
+        }
+
         function createRainLine() {
-            // Create a new div element for the rain line
             var rainLine = document.createElement("div");
             rainLine.className = "rain-line";
-
-            // Set random properties for the rain line
-            rainLine.style.left = Math.random() * 100 + "%"; // Random horizontal position
-            rainLine.style.animationDuration = (Math.random() * 2 + 1) + "s"; // Random animation duration
-            rainLine.style.animationDelay = (Math.random() * 2) + "s"; // Random animation delay
-
-            // Append the rain line to the rain container
+            rainLine.style.left = Math.random() * 100 + "%";
+            rainLine.style.animationDuration = (Math.random() * 2 + 1) + "s";
+            rainLine.style.animationDelay = (Math.random() * 2) + "s";
             document.getElementById("rain").appendChild(rainLine);
         }
-
-        // Function to get the current time in Moreland time with AM or PM
-        function getCurrentTimeMoreland() {
-            // Get current date and time
-            var now = new Date();
-            
-            // Adjust the time backward by 5 hours for Moreland time (Central Time Zone)
-            now.setHours(now.getHours() - 5); // Adjust the hours by subtracting 5
-            
-            // Determine if it's AM or PM
-            var period = now.getHours() >= 12 ? "PM" : "AM";
-            
-            // Format the time
-            var hours = now.getHours() % 12 || 12; // Convert to 12-hour format
-            var minutes = now.getMinutes();
-            var timeString = hours + ":" + (minutes < 10 ? "0" : "") + minutes + " " + period;
-            
-            return timeString;
-        }
-
-        // Update the element with the current time
-        function updateCurrentTime() {
-            var currentTimeElement = document.getElementById("current-time");
-            if (currentTimeElement) {
-                // Update the text to include the current time in Moreland
-                currentTimeElement.textContent = getCurrentTimeMoreland();
-            }
-        }
-
-        // Call the function once to display the initial time
-        updateCurrentTime();
-
-        // Optionally, you can update the time periodically
-        setInterval(updateCurrentTime, 1000); // Update every second
     </script>
 </body>
 </html>
-```
 
-This will add a "Hosted by Marcus.lol" section at the bottom right corner of the page, which is clickable and will open the link in a new tab when clicked.
