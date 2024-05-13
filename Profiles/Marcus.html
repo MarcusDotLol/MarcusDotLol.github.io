@@ -41,31 +41,13 @@
             margin-bottom: 10px;
             position: relative;
         }
-        .profile h1:hover .star-badge {
-            opacity: 1;
-            transform: scale(1.2);
-        }
-        .profile h1:hover .star-badge::before {
-            content: 'Owner';
+        .profile h1 .star-badge {
             position: absolute;
-            bottom: -20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: rgba(0, 0, 0, 0.8);
-            color: #fff;
-            padding: 5px 10px;
-            border-radius: 5px;
-            z-index: 999;
+            top: 50%;
+            left: calc(100% + 10px);
+            transform: translateY(-50%);
         }
-        .star-badge {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            opacity: 0;
-            transition: opacity 0.3s, transform 0.3s;
-        }
-        .profile h1 .star-badge i {
+        .star-badge i {
             font-size: 20px;
             color: gold;
         }
@@ -204,7 +186,7 @@
         <div class="profile">
             <!-- Profile Content -->
             <img src="https://github.com/DamageCoding/Marcus/blob/main/Images/Marcus.png?raw=true" alt="Profile Picture">
-            <h1><span class="star-badge"><i class="fas fa-star"></i></span></h1>
+            <h1>Marcus<span class="star-badge"><i class="fas fa-star"></i></span></h1>
             <h2>Marcus</h2>
             <p>You can DM me if I don't respond; I might be busy or sleeping. <br>
             <a href="https://www.youtube.com/watch?v=OPrLdJPmaiU" target="_blank">https://www.youtube.com/watch?v=OPrLdJPmaiU</a> <br>
