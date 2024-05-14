@@ -97,54 +97,77 @@
     </div>
 
     <script>
-        // Mock database of invite codes
-        let inviteCodes = ['OhioGyattinsigma', '13fc', 'MarcusLovesMoo'];
+        // Function to fetch invite codes from keys.txt
+        async function fetchInviteCodes() {
+            try {
+                const response = await fetch('keys.txt'); // Fetch keys.txt
+                const text = await response.text(); // Extract text from response
+                return text.trim().split('\n'); // Split text by lines and trim whitespace
+            } catch (error) {
+                console.error('Error fetching invite codes:', error);
+                return []; // Return an empty array in case of error
+            }
+        }
 
+        // Function to initialize the application
+        async function initialize() {
+            try {
+                // Fetch invite codes
+                let inviteCodes = await fetchInviteCodes();
+
+                // Function to handle form submission
+                document.getElementById('signupForm').addEventListener('submit', async function(event) {
+                    event.preventDefault(); // Prevent form submission
+
+                    // Get input values
+                    const inviteCode = document.getElementById('inviteCode').value.trim();
+                    const username = document.getElementById('username').value.trim();
+                    const password = document.getElementById('password').value.trim();
+
+                    // Check if invite code is valid
+                    if (inviteCodes.includes(inviteCode)) {
+                        // Remove the used invite code
+                        inviteCodes = inviteCodes.filter(code => code !== inviteCode);
+
+                        // Clear the screen
+                        document.querySelector('.options').style.display = 'none';
+
+                        // Show the message container
+                        const messageContainer = document.querySelector('.container');
+                        messageContainer.classList.add('show');
+                        messageContainer.style.display = 'block'; // Ensure container is visible
+
+                        // Display message
+                        document.getElementById('message').textContent = "Redirecting you to the owner's page. Please contact them to get your page.";
+
+                        // Redirect after 5 seconds
+                        setTimeout(function() {
+                            window.location.href = 'https://damagecoding.github.io/Marcus/Marcus';
+                        }, 5000);
+                    } else {
+                        document.getElementById('message').textContent = 'Invalid invite code. Please try again.';
+                    }
+                });
+            } catch (error) {
+                console.error('Error initializing application:', error);
+            }
+        }
+
+        // Function to show sign-up form
         function showSignupForm() {
             // Hide options and show sign-up form
             document.querySelector('.options').style.display = 'none';
             document.querySelector('.container').classList.add('show');
         }
 
-        // Function to handle form submission
-        document.getElementById('signupForm').addEventListener('submit', function(event) {
-            event.preventDefault(); // Prevent form submission
-
-            // Get input values
-            const inviteCode = document.getElementById('inviteCode').value.trim();
-            const username = document.getElementById('username').value.trim();
-            const password = document.getElementById('password').value.trim();
-
-            // Check if invite code is valid
-            if (inviteCodes.includes(inviteCode)) {
-                // Remove the used invite code
-                inviteCodes = inviteCodes.filter(code => code !== inviteCode);
-
-                // Clear the screen
-                document.querySelector('.options').style.display = 'none';
-
-                // Show the message container
-                const messageContainer = document.querySelector('.container');
-                messageContainer.classList.add('show');
-                messageContainer.style.display = 'block'; // Ensure container is visible
-
-                // Display message
-                document.getElementById('message').textContent = "Redirecting you to the owner's page. Please contact them to get your page.";
-
-                // Redirect after 5 seconds
-                setTimeout(function() {
-                    window.location.href = 'https://damagecoding.github.io/Marcus/Marcus';
-                }, 5000);
-            } else {
-                document.getElementById('message').textContent = 'Invalid invite code. Please try again.';
-            }
-        });
-
         // Function to handle joining Discord
         function joinDiscord() {
             // Redirect users to your Discord invite link
             window.location.href = 'https://discord.gg/UhmPxQVTDa';
         }
+
+        // Call initialize function when the page is loaded
+        initialize();
     </script>
 </body>
 </html>
