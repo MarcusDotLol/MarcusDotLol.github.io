@@ -10,8 +10,8 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #111; /* Dark background */
-            color: #fff; /* Light text */
+            background-color: #f3f4f6; /* Light background */
+            color: #333; /* Dark text */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -39,7 +39,7 @@
         }
         .container {
             display: none; /* Hide by default */
-            background-color: rgba(255, 255, 255, 0.1);
+            background-color: #fff; /* White background */
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -52,10 +52,10 @@
             width: 100%;
             padding: 10px;
             margin: 5px 0;
-            border: none;
+            border: 1px solid #ccc; /* Light gray border */
             border-radius: 5px;
-            background-color: rgba(255, 255, 255, 0.2);
-            color: #fff;
+            background-color: #f9f9f9; /* Light gray background */
+            color: #333; /* Dark text */
         }
         input[type="submit"] {
             width: 100%;
@@ -74,8 +74,8 @@
         }
         #message {
             margin-top: 10px;
-            color: #ffd700; /* Yellow text */
-            font-size: 24px; /* Increased font size */
+            color: #555; /* Dark gray text */
+            font-size: 18px; /* Font size */
             text-align: center; /* Center-aligned text */
         }
     </style>
@@ -86,7 +86,7 @@
         <a href="https://t.me/Marcuswillbemarcus" class="button">Contact Owner</a>
         <button onclick="showSignupForm()" class="button">Sign Up</button>
         <!-- Discord button -->
-        <button onclick="joinDiscord()" class="button">Join Our Discord</button>
+        <button onclick="joinDiscord()" class="button" style="background-color: #7289da;">Join Our Discord</button>
     </div>
 
     <div class="container">
