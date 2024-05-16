@@ -6,6 +6,11 @@
     <title>Marcus.lol</title>
     <link rel="icon" type="image/png" href="https://github.com/Marcus-lol/Main/blob/main/Images/icon.png?raw=true">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <meta property="og:title" content="Marcus.lol">
+    <meta property="og:description" content="Personal website of Marcus">
+    <meta property="og:image" content="https://github.com/Marcus-lol/Main/blob/main/Images/icon.png?raw=true">
+    <meta property="og:url" content="https://marcus-lol.github.io/Main/">
+    <meta name="twitter:card" content="summary_large_image">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -216,9 +221,7 @@
             margin-right: 10px;
         }
         #hosted-text span {
-            font-weight
-
-: bold;
+            font-weight: bold;
             text-transform: uppercase;
         }
     </style>
@@ -266,7 +269,8 @@
         }
 
         function redirectToMarcus() {
-            window.location.href = "https://marcus-lol.github.io/Main/";
+            var sharedURL = "https://marcus-lol.github.io/Main/";
+            window.open(sharedURL, '_blank').focus();
         }
 
         function createRainLine() {
