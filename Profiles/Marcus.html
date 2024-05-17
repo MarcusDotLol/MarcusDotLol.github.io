@@ -100,18 +100,8 @@
         }
         .typing-container {
             display: inline-block;
-            position: absolute;
-            top: 0;
-            left: 0;
+            position: relative;
             white-space: nowrap;
-            overflow: hidden;
-            border-right: 2px solid #fff;
-            animation: caret 0.75s steps(1) infinite;
-        }
-        @keyframes caret {
-            50% {
-                border-color: transparent;
-            }
         }
         .social-links {
             text-align: center;
@@ -250,8 +240,8 @@
             <img src="https://github.com/Marcus-lol/Main/blob/main/Images/Marcus.png?raw=true" alt="Profile Picture">
             <h1>Marcus <span class="star-badge" onmouseover="this.nextElementSibling.style.display='block'" onmouseout="this.nextElementSibling.style.display='none'"><i class="fas fa-star"></i></span><span class="owner-text">Owner</span></h1>
             <p>
-                A 
-                <span class="typing-container" id="dynamic-text"></span> 
+                A
+                <span class="typing-container" id="dynamic-text"></span>
                 trying to make the most of this world full of sins.
             </p>
             <p>You can DM me if I don't respond; I might be busy or sleeping. <br>
