@@ -7,25 +7,36 @@
     <link rel="icon" type="image/png" href="https://github.com/Marcus-lol/Main/blob/main/Images/icon.png?raw=true">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        /* Resetting defaults */
+        * {
             margin: 0;
             padding: 0;
-            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
             background-color: #000;
             color: #fff;
+            overflow-x: hidden;
         }
+
+        /* Container */
         .container {
             max-width: 800px;
             margin: 50px auto;
             padding: 20px;
-            background-color: transparent;
-            position: relative;
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
         }
+
+        /* Profile */
         .profile {
             text-align: center;
-            padding: 20px;
+            margin-bottom: 30px;
         }
+
         .profile img {
             width: 150px;
             height: 150px;
@@ -34,52 +45,41 @@
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
             margin-bottom: 20px;
         }
+
         .profile h1 {
             font-size: 32px;
             margin-bottom: 10px;
             position: relative;
             display: inline-block;
+            color: #fff;
         }
-        .star-badge {
-            position: absolute;
-            top: 50%;
-            left: calc(100% + 10px);
-            transform: translateY(-50%);
+
+        .profile h1:hover .owner-text {
+            display: inline-block;
         }
+
         .star-badge i {
             font-size: 20px;
             color: gold;
             cursor: pointer;
         }
+
         .owner-text {
             display: none;
-            position: absolute;
-            top: 50%;
-            left: calc(100% + 20px);
-            transform: translateY(-50%);
             font-size: 14px;
             font-weight: bold;
-            padding: 5px 10px;
-            border-radius: 15px;
-            background-color: #333;
-            color: #fff;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
-            opacity: 0;
-            transition: opacity 0.3s ease;
+            color: gold;
+            position: absolute;
+            bottom: -10px;
+            left: calc(50% - 10px);
         }
-        h1:hover .owner-text {
-            display: block;
-            opacity: 1;
-        }
-        .profile h2, .profile p {
-            font-size: 18px;
-            color: #999;
-            margin-bottom: 20px;
-        }
+
+        /* Social Links */
         .social-links {
             text-align: center;
             margin-top: 20px;
         }
+
         .social-links a {
             color: #fff;
             font-size: 24px;
@@ -87,17 +87,19 @@
             text-decoration: none;
             transition: color 0.3s ease;
         }
+
         .social-links a:hover {
             color: #007bff;
         }
+
+        /* Hosted Text */
         #hosted-text {
             position: fixed;
             bottom: 20px;
             right: 20px;
-            font-size: 18px;
+            font-size: 16px;
             color: #fff;
             opacity: 0.8;
-            animation: glow 1s ease-in-out infinite alternate;
             cursor: pointer;
             display: flex;
             align-items: center;
@@ -107,16 +109,18 @@
             box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
             transition: opacity 0.3s, transform 0.3s;
         }
+
         #hosted-text:hover {
             opacity: 1;
             transform: scale(1.05);
         }
+
         #hosted-text img {
             margin-right: 10px;
-            width: 24px;
+            width: 20px;
             height: auto;
-            vertical-align: middle;
         }
+
         #hosted-text span {
             font-weight: bold;
             text-transform: uppercase;
@@ -127,10 +131,8 @@
     <div class="container">
         <div class="profile">
             <img src="https://github.com/Marcus-lol/Main/blob/main/Images/Marcus.png?raw=true" alt="Profile Picture">
-            <h1>Marcus <span class="star-badge" onmouseover="this.nextElementSibling.style.display='block'" onmouseout="this.nextElementSibling.style.display='none'"><i class="fas fa-star"></i></span><span class="owner-text">Owner</span></h1>
-            <p>You can DM me if I don't respond; I might be busy or sleeping.<br>
-            <a href="https://www.youtube.com/watch?v=OPrLdJPmaiU" target="_blank">https://www.youtube.com/watch?v=OPrLdJPmaiU</a><br>
-            If you need to talk to me, DM me on Telegram.</p>
+            <h1>Marcus <span class="star-badge" onmouseover="this.nextElementSibling.style.display='inline-block'" onmouseout="this.nextElementSibling.style.display='none'"><i class="fas fa-star"></i></span><span class="owner-text">Owner</span></h1>
+            <p>You can DM me if I don't respond; I might be busy or sleeping.</p>
         </div>
         <div class="social-links">
             <a href="https://t.me/Marcuswillbemarcus" target="_blank"><i class="fab fa-telegram"></i></a>
@@ -141,5 +143,6 @@
         <img src="https://github.com/Marcus-lol/Main/blob/main/Images/icon.png?raw=true" alt="Hosted icon">
         <span>Hosted by Marcus.lol</span>
     </div>
+    <audio id="backgroundAudio" src="Marcus.mp3" loop hidden></audio>
 </body>
 </html>
