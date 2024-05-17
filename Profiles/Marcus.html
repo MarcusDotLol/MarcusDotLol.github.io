@@ -64,18 +64,18 @@
             transform: translateY(-50%);
             font-size: 14px;
             font-weight: bold;
-            padding: 5px 10px; /* Add padding */
-            border-radius: 15px; /* Add border radius */
-            background-color: #333; /* Background color */
-            color: #fff; /* Text color */
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Add box shadow */
-            opacity: 0; /* Hide initially */
-            transition: opacity 0.3s ease; /* Smooth transition */
+            padding: 5px 10px;
+            border-radius: 15px;
+            background-color: #333;
+            color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
         h1:hover .owner-text {
             display: block;
-            opacity: 1; /* Show on hover */
-            animation: none; /* Stop rainbow animation on hover */
+            opacity: 1;
+            animation: none;
         }
         @keyframes rainbow {
             0% { color: #ff0000; }
@@ -96,12 +96,16 @@
             font-size: 18px;
             color: #999;
             margin-bottom: 20px;
+            position: relative;
         }
         .typing-container {
             display: inline-block;
-            border-right: 2px solid #fff;
+            position: absolute;
+            top: 0;
+            left: 0;
             white-space: nowrap;
             overflow: hidden;
+            border-right: 2px solid #fff;
             animation: caret 0.75s steps(1) infinite;
         }
         @keyframes caret {
@@ -245,7 +249,11 @@
             <!-- Profile Content -->
             <img src="https://github.com/Marcus-lol/Main/blob/main/Images/Marcus.png?raw=true" alt="Profile Picture">
             <h1>Marcus <span class="star-badge" onmouseover="this.nextElementSibling.style.display='block'" onmouseout="this.nextElementSibling.style.display='none'"><i class="fas fa-star"></i></span><span class="owner-text">Owner</span></h1>
-            <p id="dynamic-text" class="typing-container"></p>
+            <p>
+                A 
+                <span class="typing-container" id="dynamic-text"></span> 
+                trying to make the most of this world full of sins.
+            </p>
             <p>You can DM me if I don't respond; I might be busy or sleeping. <br>
             <a href="https://www.youtube.com/watch?v=OPrLdJPmaiU" target="_blank">https://www.youtube.com/watch?v=OPrLdJPmaiU</a> <br>
             If you need to talk to me, DM me on Telegram.</p>
@@ -311,7 +319,7 @@
         setInterval(createThunder, Math.random() * 10000 + 5000); // Adjust interval as needed
 
         // Typing and Deleting Effect
-        const phrases = ["A Dumb Kid", "A Smart Kid"];
+        const phrases = ["Dumb Kid", "Smart Kid"];
         let currentPhraseIndex = 0;
         let currentLetterIndex = 0;
         let isDeleting = false;
