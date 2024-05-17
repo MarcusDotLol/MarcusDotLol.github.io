@@ -97,6 +97,18 @@
             color: #999;
             margin-bottom: 20px;
         }
+        .typing-container {
+            display: inline-block;
+            border-right: 2px solid #fff;
+            white-space: nowrap;
+            overflow: hidden;
+            animation: caret 0.75s steps(1) infinite;
+        }
+        @keyframes caret {
+            50% {
+                border-color: transparent;
+            }
+        }
         .social-links {
             text-align: center;
             margin-top: 20px;
@@ -216,9 +228,7 @@
             margin-right: 10px;
         }
         #hosted-text span {
-            font-weight
-
-: bold;
+            font-weight: bold;
             text-transform: uppercase;
         }
     </style>
@@ -235,7 +245,7 @@
             <!-- Profile Content -->
             <img src="https://github.com/Marcus-lol/Main/blob/main/Images/Marcus.png?raw=true" alt="Profile Picture">
             <h1>Marcus <span class="star-badge" onmouseover="this.nextElementSibling.style.display='block'" onmouseout="this.nextElementSibling.style.display='none'"><i class="fas fa-star"></i></span><span class="owner-text">Owner</span></h1>
-            <p>A Dumb Kid Trying to make somthing of this world full of sins<br>
+            <p id="dynamic-text" class="typing-container"></p>
             <p>You can DM me if I don't respond; I might be busy or sleeping. <br>
             <a href="https://www.youtube.com/watch?v=OPrLdJPmaiU" target="_blank">https://www.youtube.com/watch?v=OPrLdJPmaiU</a> <br>
             If you need to talk to me, DM me on Telegram.</p>
@@ -264,6 +274,7 @@
             }, 500);
             document.getElementById("profile-container").style.display = "block";
             document.getElementById("backgroundAudio").play();
+            typeWriterEffect();
         }
 
         function redirectToMarcus() {
@@ -298,6 +309,39 @@
 
         // Call createThunder() function at random intervals
         setInterval(createThunder, Math.random() * 10000 + 5000); // Adjust interval as needed
+
+        // Typing and Deleting Effect
+        const phrases = ["A Dumb Kid", "A Smart Kid"];
+        let currentPhraseIndex = 0;
+        let currentLetterIndex = 0;
+        let isDeleting = false;
+        const typingSpeed = 150;
+        const deletingSpeed = 100;
+        const pauseDuration = 2000;
+
+        function typeWriterEffect() {
+            const dynamicText = document.getElementById("dynamic-text");
+            if (isDeleting) {
+                if (currentLetterIndex > 0) {
+                    dynamicText.textContent = phrases[currentPhraseIndex].substring(0, currentLetterIndex - 1);
+                    currentLetterIndex--;
+                    setTimeout(typeWriterEffect, deletingSpeed);
+                } else {
+                    isDeleting = false;
+                    currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
+                    setTimeout(typeWriterEffect, typingSpeed);
+                }
+            } else {
+                if (currentLetterIndex < phrases[currentPhraseIndex].length) {
+                    dynamicText.textContent += phrases[currentPhraseIndex].charAt(currentLetterIndex);
+                    currentLetterIndex++;
+                    setTimeout(typeWriterEffect, typingSpeed);
+                } else {
+                    isDeleting = true;
+                    setTimeout(typeWriterEffect, pauseDuration);
+                }
+            }
+        }
     </script>
 </body>
 </html>
