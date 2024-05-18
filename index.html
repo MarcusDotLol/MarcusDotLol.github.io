@@ -20,15 +20,15 @@
         }
         .options {
             text-align: center;
-            margin-bottom: 20px;
+            animation: fadeIn 1s ease-in-out;
         }
         .button {
-            padding: 10px 20px;
+            padding: 12px 24px;
             margin: 10px;
             background-color: #007bff;
             color: #fff;
             border: none;
-            border-radius: 5px;
+            border-radius: 25px;
             cursor: pointer;
             text-decoration: none;
             display: inline-block;
@@ -36,64 +36,78 @@
             font-size: 16px;
             font-weight: bold;
             outline: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         .button:hover {
             background-color: #0056b3;
             transform: scale(1.05);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
         }
         .container {
             display: none;
             background-color: rgba(255, 255, 255, 0.1);
             padding: 20px;
-            border-radius: 10px;
+            border-radius: 15px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 300px;
+            max-width: 320px;
             width: 100%;
             text-align: center;
+            animation: fadeIn 1s ease-in-out;
         }
         .container.show {
             display: block;
         }
         input[type="text"],
         input[type="password"] {
-            width: calc(100% - 20px);
-            padding: 10px;
-            margin: 5px 0;
+            width: calc(100% - 24px);
+            padding: 12px;
+            margin: 8px 0;
             border: none;
-            border-radius: 5px;
+            border-radius: 25px;
             background-color: rgba(255, 255, 255, 0.2);
             color: #111;
-            font-size: 14px;
+            font-size: 16px;
             outline: none;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         input[type="submit"] {
-            width: calc(100% - 20px);
-            padding: 10px;
-            margin-top: 10px;
+            width: calc(100% - 24px);
+            padding: 12px;
+            margin-top: 15px;
             border: none;
-            border-radius: 5px;
+            border-radius: 25px;
             background-color: #007bff;
             color: #fff;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s ease, transform 0.3s ease;
             font-size: 16px;
             font-weight: bold;
             outline: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         input[type="submit"]:hover {
             background-color: #0056b3;
             transform: translateY(-2px);
         }
         #message {
-            margin-top: 10px;
+            margin-top: 15px;
             color: #ffd700;
             font-size: 16px;
             font-weight: bold;
             text-align: center;
         }
         h1 {
-            font-size: 24px;
+            font-size: 32px;
             margin-bottom: 20px;
+            animation: fadeInDown 1s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
@@ -130,13 +144,11 @@
         async function initialize() {
             try {
                 let inviteCodes = await fetchInviteCodes();
-                document.getElementById('signupForm').addEventListener('submit', async function(event) {
+                document.getElementById('signupForm').addEventListener('submit', function(event) {
                     event.preventDefault();
-
                     const inviteCode = document.getElementById('inviteCode').value.trim();
                     const username = document.getElementById('username').value.trim();
                     const password = document.getElementById('password').value.trim();
-
                     if (inviteCodes.includes(inviteCode)) {
                         inviteCodes = inviteCodes.filter(code => code !== inviteCode);
                         document.querySelector('.options').style.display = 'none';
@@ -144,7 +156,6 @@
                         messageContainer.classList.add('show');
                         messageContainer.setAttribute('aria-hidden', 'false');
                         document.getElementById('message').textContent = "Redirecting you to the owner's page. Please contact them to get your page.";
-
                         setTimeout(() => {
                             window.location.href = './Profiles/Marcus.html';
                         }, 3000);
