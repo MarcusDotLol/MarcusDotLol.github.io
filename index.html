@@ -119,25 +119,29 @@
             background: linear-gradient(45deg, #333, #555);
             overflow-x: hidden;
             transition: 0.5s;
-            padding-top: 60px;
+            padding-top: 20px;
             z-index: 1;
             box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
         }
         .sidebar a {
-            padding: 15px;
+            padding: 10px;
             text-decoration: none;
-            font-size: 18px;
+            font-size: 16px;
             color: #fff;
             display: block;
             transition: 0.3s;
             position: relative;
             overflow: hidden;
+            border-bottom: 1px solid #888;
+        }
+        .sidebar a:last-child {
+            border-bottom: none;
         }
         .sidebar a:hover {
             background-color: #575757;
         }
         .sidebar a i {
-            margin-right: 15px;
+            margin-right: 10px;
             font-size: 20px;
             transition: 0.3s;
         }
@@ -145,8 +149,7 @@
             position: absolute;
             top: 0;
             right: 25px;
-            font-size: 30px;
-            margin-left: 50px;
+            font-size: 24px;
             color: #fff;
             transition: 0.3s;
             cursor: pointer;
@@ -193,6 +196,7 @@
         <p id="message" role="alert"></p>
     </div>
 
+    <!-- Sidebar -->
     <div id="mySidebar" class="sidebar">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <a href="#"><i class="fas fa-home"></i> Home</a>
@@ -201,6 +205,7 @@
         <a href="#"><i class="fas fa-envelope"></i> Contact</a>
     </div>
     
+    <!-- Button to open Sidebar -->
     <button class="openbtn" onclick="openNav()">&#9776;</button>
 
     <script>
@@ -254,7 +259,7 @@
         }
 
         function openNav() {
-            document.getElementById('mySidebar').style.width = '250px';
+            document.getElementById('mySidebar').style.width = '200px';
         }
 
         function closeNav() {
