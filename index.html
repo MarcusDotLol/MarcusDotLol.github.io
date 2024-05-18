@@ -110,69 +110,57 @@
             from { opacity: 0; transform: translateY(-20px); }
             to { opacity: 1; transform: translateY(0); }
         }
+        /* Sidebar */
         .sidebar {
             height: 100%;
             width: 0;
             position: fixed;
             top: 0;
             right: 0;
-            background-color: #222; /* Match with website background */
+            background-color: #333;
             overflow-x: hidden;
-            transition: 0.5s;
-            padding-top: 20px;
-            z-index: 1;
-            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+            transition: width 0.5s;
+            padding-top: 60px;
+            z-index: 1000;
         }
         .sidebar a {
-            padding: 10px;
+            padding: 10px 15px;
             text-decoration: none;
-            font-size: 16px;
+            font-size: 18px;
             color: #fff;
             display: block;
             transition: 0.3s;
-            position: relative;
-            overflow: hidden;
-            border-bottom: 1px solid #888;
-        }
-        .sidebar a:last-child {
-            border-bottom: none;
         }
         .sidebar a:hover {
-            background-color: #444; /* Match with website button hover color */
-        }
-        .sidebar a i {
-            margin-right: 10px;
-            font-size: 20px;
-            transition: 0.3s;
+            background-color: #444;
+            color: #fff;
         }
         .sidebar .closebtn {
             position: absolute;
             top: 0;
-            right: 25px;
-            font-size: 24px;
+            right: 20px;
+            font-size: 30px;
             color: #fff;
-            transition: 0.3s;
-            cursor: pointer;
         }
         .sidebar .closebtn:hover {
-            transform: rotate(90deg);
+            color: #bbb;
         }
         .openbtn {
             font-size: 20px;
             cursor: pointer;
-            background-color: #333;
+            background-color: #444;
             color: white;
             padding: 10px 15px;
             border: none;
             position: absolute;
-            top: 15px;
-            right: 15px;
-            z-index: 2;
+            top: 10px;
+            right: 10px;
+            z-index: 1001;
             border-radius: 50%;
             transition: 0.3s;
         }
         .openbtn:hover {
-            background-color: #444;
+            background-color: #555;
         }
     </style>
     <!-- Font Awesome for icons -->
@@ -188,85 +176,45 @@
 
     <div class="container" aria-hidden="true">
         <form id="signupForm">
-        <input type="text" id="inviteCode" placeholder="Enter your invite code" aria-label="Invite Code">
-        <input type="text" id="username" placeholder="Enter your desired username" aria-label="Username">
-        <input type="password" id="password" placeholder="Enter your password" aria-label="Password">
-        <input type="submit" value="Sign Up">
-</form>
-<p id="message" role="alert"></p>
-</div>
+            <input type="text" id="inviteCode" placeholder="Enter your invite code" aria-label="Invite Code">
+            <input type="text" id="username" placeholder="Enter your desired username" aria-label="Username">
+            <input type="password" id="password" placeholder="Enter your password" aria-label="Password">
+            <input type="submit" value="Sign Up">
+        </form>
+        <p id="message" role="alert"></p>
+    </div>
 
-<!-- Sidebar -->
-<div id="mySidebar" class="sidebar">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="#"><i class="fas fa-home"></i> Home</a>
-    <a href="#"><i class="fas fa-info-circle"></i> About</a>
-    <a href="#"><i class="fas fa-concierge-bell"></i> Services</a>
-    <a href="#"><i class="fas fa-envelope"></i> Contact</a>
-</div>
+    <!-- Sidebar -->
+    <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="#"><i class="fas fa-home"></i> Home</a>
+        <a href="#"><i class="fas fa-info-circle"></i> About</a>
+        <a href="#"><i class="fas fa-concierge-bell"></i> Services</a>
+        <a href="#"><i class="fas fa-envelope"></i> Contact</a>
+    </div>
 
-<!-- Button to open Sidebar -->
-<button class="openbtn" onclick="openNav()">&#9776;</button>
+    <!-- Button to open Sidebar -->
+    <button class="openbtn" onclick="openNav()">&#9776;</button>
 
-<script>
-    async function fetchInviteCodes() {
-        try {
-            const response = await fetch('keys.txt');
-            const text = await response.text();
-            return text.trim().split('\n');
-        } catch (error) {
-            console.error('Error fetching invite codes:', error);
-            return [];
+    <script>
+        function openNav() {
+            document.getElementById("mySidebar").style.width = "250px";
         }
-    }
 
-    async function initialize() {
-        try {
-            let inviteCodes = await fetchInviteCodes();
-            document.getElementById('signupForm').addEventListener('submit', function(event) {
-                event.preventDefault();
-                const inviteCode = document.getElementById('inviteCode').value.trim();
-                const username = document.getElementById('username').value.trim();
-                const password = document.getElementById('password').value.trim();
-                if (inviteCodes.includes(inviteCode)) {
-                    inviteCodes = inviteCodes.filter(code => code !== inviteCode);
-                    document.querySelector('.options').style.display = 'none';
-                    const messageContainer = document.querySelector('.container');
-                    messageContainer.classList.add('show');
-                    messageContainer.setAttribute('aria-hidden', 'false');
-                    document.getElementById('message').textContent = "Redirecting you to the owner's page. Please contact them to get your page.";
-                    setTimeout(() => {
-                        window.location.href = './Profiles/Marcus.html';
-                    }, 3000);
-                } else {
-                    document.getElementById('message').textContent = 'Invalid invite code. Please try again.';
-                }
-            });
-        } catch (error) {
-            console.error('Error initializing application:', error);
+        function closeNav() {
+            document.getElementById("mySidebar").style.width = "0";
         }
-    }
 
-    function showSignupForm() {
-        document.querySelector('.options').style.display = 'none';
-        const container = document.querySelector('.container');
-        container.classList.add('show');
-        container.setAttribute('aria-hidden', 'false');
-    }
+        function showSignupForm() {
+            document.querySelector(".options").style.display = "none";
+            const container = document.querySelector(".container");
+            container.classList.add("show");
+            container.setAttribute("aria-hidden", "false");
+        }
 
-    function joinDiscord() {
-        window.location.href = 'https://discord.gg/UhmPxQVTDa';
-    }
-
-    function openNav() {
-        document.getElementById('mySidebar').style.width = '200px';
-    }
-
-    function closeNav() {
-        document.getElementById('mySidebar').style.width = '0';
-    }
-
-    window.addEventListener('DOMContentLoaded', initialize);
-</script>
+        function joinDiscord() {
+            window.location.href = "https://discord.gg/UhmPxQVTDa";
+        }
+    </script>
 </body>
 </html>
