@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>unleah_x</title>
+    <link rel="stylesheet" href="/main.css">
+    <link rel="stylesheet" href="https://site-assets.fontawesome.com/releases/v6.2.0/css/all.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&display=swap');
+
+        body {
+            background-color: #000000
+
+;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            backdrop-filter: blur(10px) saturate(200%) brightness(70%);
+            color: #fff;
+            display: flex;
+            height: 7vw;
+            width: 100%;
+            align-items: center;
+            justify-content: space-between; /* Adjusted alignment */
+            padding: 0 1%;
+            z-index: 5;
+            margin: auto;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        nav img {
+            height: 7vw;
+            width: auto;
+            margin-right: 10px;
+            border-radius: 3vw;
+            cursor: pointer;
+            user-select: none;
+            box-shadow: 16px 20px 10px rgba(53, 53, 53, 0.459);
+        }
+
+        nav h1 {
+            margin: 0; /* Reset margin */
+            font-size: 3.5vw; /* Adjust font size */
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0; /* Reset margin */
+            padding: 0; /* Reset padding */
+            display: flex;
+            align-items: center;
+        }
+
+        nav li {
+            margin-right: 20px; /* Adjust spacing between list items */
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.8vw; /* Adjust font size */
+        }
+
+        nav a:hover {
+            color: #8a2424;
+        }
+
+        .content {
+            flex-direction: column;
+            align-items: left;
+            padding: 7vw;
+            padding-top: 0vw;
+        }
+
+        .content hr {
+            border: 0;
+            height: 4px;
+            background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgb(255, 255, 255), rgba(0, 0, 0, 0));
+            margin: 1vw 0;
+        }
+
+        .search {
+            display: flex;
+            user-select: none;
+            margin-top: 2.5vw;
+            margin-left: 1.2vw;
+        }
+       
+        .search input {
+            background-color: #222222;
+            border: none;
+            border-radius: 1vw 0 0 1vw;
+            color: #fff;
+            font-size: 1.5vw;
+            font-weight: 600;
+            padding: 0.8vw 1.5vw;
+            font-family: 'Montserrat', sans-serif;
+            z-index: 1;
+            outline: none;
+        }
+       
+        .search input::placeholder {
+            color: #fff;
+            font-weight: 600;
+            font-size: 1.5vw;
+        }
+       
+        .search button {
+            background-color: #fff;
+            border: none;
+            border-radius: 0 1vw 1vw 0;
+            color:#222222;
+            font-size: 1.5vw;
+            font-weight: 600;
+            padding: 0.8vw 1vw;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+            z-index: 1;
+            transition: .3s all ease;
+        }
+       
+        #games {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: .6vw;
+            padding-bottom: 5vw;
+        }
+       
+        #games img {
+            height: 15.6vw;
+            width: 15.6vw;
+            border-radius: 1vw;
+            margin: .5vw;
+            cursor: pointer;
+            user-select: none;
+            transition: transform .2s;
+        }
+       
+        #games img:hover {
+            transform: scale(1.01);
+        }
+
+        .featured {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 1vw;
+            margin:1%;
+            margin-top: 6vw;
+        }
+
+        .featured h1 {
+            font-size: 3.5vw;
+            font-weight: 700;
+            margin: 1vw 1vw .4vw 1vw;
+            width: 83.8%;
+            text-align: left;
+            color: #fff;
+        }
+
+        .featured .column {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .featured img {
+            height: 12.5vw;
+            width: 12.5vw;
+            border-radius: 1vw;
+            margin: .5vw;
+            cursor: pointer;
+            user-select: none;
+            transition: all .2s;
+        }
+
+        .featured img:hover {
+            transform: scale(1.02);
+            filter: brightness(50%);
+        }
+
+        .featured .row img {
+            height: 26vw;
+            width: 26vw;
+        }
+
+        .featured a {
+            display: inline-block;
+            position: relative;
+            color: #8a2424;
+            text-decoration: none;
+        }
+       
+        .featured .play-button {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+       
+        .featured a:hover .play-button {
+            opacity: 1;
+            pointer-events: none;
+        }
+       
+        .featured .play-button i {
+            font-size: 5vw;
+            text-shadow: 0 0 100px #8a2424;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+    <img src="https://www.zarla.com/images/zarla-x-1x1-2400x2400-20211122-f894v3t4j6tjbg9hchtx.png?crop=1:1,smart&width=250&dpr=2" alt="">
+    <h1>UNLEAH_X</h1>
+    <ul> <!-- Add this UL container -->
+        <li><a href="https://codepad.co/playground" target="_blank"><i class="fas fa-gamepad"></i> alternative site1</a></li>
+        <li><a href="https://www.onlinegdb.com/online_html_compiler" target="_blank"><i class="fas fa-gamepad"></i>alternative site 2</a></li>
+        <li><a href="https://www.youtube.com/@Jsaverx" target="_blank"><i class="fab fa-youtube"></i> youtube</a></li>
+        <li><a href="https://www.tiktok.com/en/" target="_blank"><i class="fab fa-tiktok"></i> tiktok</a></li>
+        <li><a href="https://www.tiktok.com/en/" target="_blank"><i class="fab fa-discord"></i> discord</a></li>
+    </ul> <!-- Close the UL container -->
+</nav>
+
+    <div class="featured">
+        <h1>New:</h1>
+        <div class="column">
+          <a href="https://ext.minijuegosgratis.com/embed/gunspin/0.3.0/index.html?gd_sdk_referrer_url=gamedistribution.com">
+            <img src="https://play-lh.googleusercontent.com/fLqvWSVq5rENEvu32xl0hf96wwSHVwQm-_9xc6KZg9Vgv9PbAtf1CyBYW7i1mlAXoSA">
+            <div class="play-button">
+                <i class="fa-solid fa-play"></i>
+            </div>
+          </a>
+          <a href="https://cbgamesdev.github.io/chilibowlflash/FNAF/2/index.html">
+            <img src="https://preview.redd.it/etg6i1ltmx6z.png?width=640&crop=smart&auto=webp&s=d2a1b8ee790c2a9db756398bc24a05e1ccc3bdf0">
+            <div class="play-button">
+                <i class="fa-solid fa-play"></i>
+            </div>
+          </a>
+        </div>
+        <div class="row">
+          <a href="https://tribals.io/">
+            <img src="https://tribals.io/Thumbnail.jpg">
+            <div class="play-button">
+                <i class="fa-solid fa-play"></i>
+            </div>
+          </a>
+        </div>
+        <div class="row">
+          <a href="https://sandstrike.io/">
+            <img src="https://images.igdb.com/igdb/image/upload/t_cover_big_2x/co67y8.jpg">
+            <div class="play-button">
+                <i class="fa-solid fa-play"></i>
+            </div>
+            </a>
+        </div>
+        <div class="column">
+          <a href="https://webglmath.github.io/drift-hunters/">
+            <img src="https://play-lh.googleusercontent.com/smo8Ln-PRREDGq_QjA-Nws7ZNJQhvQfUB2oA8XV0GW12uq6hqdhvwXCB2rdl6zjekcow">
+            <div class="play-button">
+                <i class="fa-solid fa-play"></i>
+            </div>
+          </a>
+          <a href="https://game316009.konggames.com/gamez/0031/6009/live/index.html">
+            <img src="https://cdn-images.threadless.com/threadless-media/artist_shops/shops/pixelpigskin/products/2550661/shirt-1636488640-d12bf219a0130e36b51254075c945b55.png?v=3&d=eyJvcHMiOiBbWyJ0cmltIiwgW2ZhbHNlLCBmYWxzZV0sIHt9XSwgWyJyZXNpemUiLCBbXSwgeyJ3aWR0aCI6IDk5Ni4wLCAiYWxsb3dfdXAiOiBmYWxzZSwgImhlaWdodCI6IDk5Ni4wfV0sIFsiY2FudmFzX2NlbnRlcmVkIiwgWzEyMDAsIDEyMDBdLCB7ImJhY2tncm91bmQiOiAiM2U4OTQ4In1dLCBbInJlc2l6ZSIsIFs4MDBdLCB7fV0sIFsiY2FudmFzX2NlbnRlcmVkIiwgWzgwMCwgODAwLCAiI2ZmZmZmZiJdLCB7fV0sIFsiZW5jb2RlIiwgWyJqcGciLCA4NV0sIHt9XV0sICJmb3JjZSI6IGZhbHNlLCAib25seV9tZXRhIjogZmFsc2V9">
+            <div class="play-button">
+                <i class="fa-solid fa-play"></i>
+            </div>
+          </a>
+        </div>
+    </div>
+
+    <div class="content">
+
+    <hr>
+
+    <div class="search">
+        <input type="text" placeholder="Search..." oninput="">
+        <button><i class="fas fa-search"></i></button>
+    </div>
+
+    <div id="games">
+       
+        <a href="https://html5.gamedistribution.com/0c454c9562d249d28ba3a2b50564042c/?gd_sdk_referrer_url=https%3A%2F%2Fvex7.io%2Fvex-7"><img src="https://vex7.io/data/image/vex7.png" alt="vex 7"></a>
+
+        <a href="https://trafficjam3d.github.io/traffic-jam-3d/"><img src="https://assets.funnygames.org/2/116082/102061/672x448/traffic-jam-3d.webp" alt="Traffic-jam-3d"></a>
+
+        <a href="https://potatocraft.pages.dev/"><img src="https://art.ngfiles.com/images/3046000/3046160_digbystuff_128x128-minecraft-pig.png?f1676371624" alt="minecraft"></a>
+
+        <a href="https://tribals.io/"><img src="https://tribals.io/Thumbnail.jpg" alt="tribals.io"></a>
+
+        <a href="https://game316009.konggames.com/gamez/0031/6009/live/index.html"><img src="https://cdn-images.threadless.com/threadless-media/artist_shops/shops/pixelpigskin/products/2550661/shirt-1636488640-d12bf219a0130e36b51254075c945b55.png?v=3&d=eyJvcHMiOiBbWyJ0cmltIiwgW2ZhbHNlLCBmYWxzZV0sIHt9XSwgWyJyZXNpemUiLCBbXSwgeyJ3aWR0aCI6IDk5Ni4wLCAiYWxsb3dfdXAiOiBmYWxzZSwgImhlaWdodCI6IDk5Ni4wfV0sIFsiY2FudmFzX2NlbnRlcmVkIiwgWzEyMDAsIDEyMDBdLCB7ImJhY2tncm91bmQiOiAiM2U4OTQ4In1dLCBbInJlc2l6ZSIsIFs4MDBdLCB7fV0sIFsiY2FudmFzX2NlbnRlcmVkIiwgWzgwMCwgODAwLCAiI2ZmZmZmZiJdLCB7fV0sIFsiZW5jb2RlIiwgWyJqcGciLCA4NV0sIHt9XV0sICJmb3JjZSI6IGZhbHNlLCAib25seV9tZXRhIjogZmFsc2V9" alt="retrobowl"></a>
+
+        <a href="https://ext.minijuegosgratis.com/embed/gunspin/0.3.0/index.html?gd_sdk_referrer_url=gamedistribution.com"><img src="https://play-lh.googleusercontent.com/fLqvWSVq5rENEvu32xl0hf96wwSHVwQm-_9xc6KZg9Vgv9PbAtf1CyBYW7i1mlAXoSA" alt="gunspin"></a>
+
+        <a href="https://kdata1.com/2020/05/slope/"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrOJnBD6ksvnSrGQYESHdLEG041nmtr60_Bw&usqp=CAU" alt="slope"></a>
+
+        <a href="https://venge.io/"><img src="https://is5-ssl.mzstatic.com/image/thumb/Purple114/v4/8f/06/7c/8f067c78-2993-3e9e-0d64-ea4722c00092/AppIcon-0-0-1x_U007emarketing-0-0-0-5-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.jpeg/1024x1024bb.png" alt="venge.io"></a>
+
+        <a href="https://cubox.io/"><img src="https://io-games.live/uploads/2023/2/headless.gg" alt="cubox.io"></a>
+
+        <a href="https://www.fieldsoffury.io/"><img src="https://img.kbhgames.com/2022/01/fields-of-fury.jpg" alt="cubox.io"></a>
+
+        <a href="https://astrodud.io/"><img src="https://www1.minijuegosgratis.com/v3/games/thumbnails/236155_7_sq.jpg" alt="astrodud.io"></a>
+
+        <a href="https://ubg365.github.io/car-rush/play.html
+        "><img src="https://images.sftcdn.net/images/t_app-icon-l/p/7a575548-0068-473a-9595-f8e0965fba0b/2160649213/car-rush-8d415ce5fb3e4456be9ef2d1f95a2167.jpg" alt="car-rush"></a>
+
+        <a href="https://html5.gamedistribution.com/44fbc5e5c6e54ac9985d1c81f1fb8121/?timestamp=1695781198&countryCode=en&siteid=88&channelid=1&siteLocale=en&locale=en&gd_sdk_referrer_url=https%3A%2F%2Fwww.gamesgames.com%2Fgame%2Fmagic-piano-tiles"><img src="https://play-lh.googleusercontent.com/5hF9MK9UFqcgUbX-1CKvmnTOt-XchFt6L5CK9FtEWIdPV2vYfFyqAdl73Kg5nSkDTKE" alt="magic piano"></a>
+
+        <a href="https://main.dd8vt524eqsk2.amplifyapp.com/projects/stack/index.html"><img src="https://play-lh.googleusercontent.com/WRlGQXa9Pav7YZPW-P5X8PAga0lF2T1BAzmasxB9qV_1_om5DgmMbxOFo2SK8ZN5K5k" alt="stacks"></a>
+
+        <a href="https://evowars.io/"><img src="https://kevin.games/assets/images/games/evowars-io.jpg" alt="evowars.iop"></a>
+
+        <a href="https://evoworld.io/"><img src="https://cdn-1.webcatalog.io/catalog/poki-flyordie-io/poki-flyordie-io-icon-filled-256.png?v=1674454122237" alt="flyodie"></a>
+
+        <a href="https://files.ufreegame.net/1024/Subway-Surfers-Zurich/"><img src="https://www.metacritic.com/a/img/catalog/provider/6/12/6-1-236584-52.jpg" alt="sub way surfers"></a>
+
+        <a href="https://main.dd8vt524eqsk2.amplifyapp.com/projects/bobtherobber2/index.html"><img src="https://play-lh.googleusercontent.com/Xn94oteWzKwbw_SzGVRjYKyuuY2E6Kd2A9YNm4MPXUBLz5QZxNWNrxNPGQo6iEpePNU" alt="bobtherob"></a>
+       
+        <a href="https://main.dd8vt524eqsk2.amplifyapp.com/projects/sm64/index.html"><img src="https://assets1.ignimgs.com/2019/05/31/mario-64---button-1559263987447.jpg" alt="mario 64"></a>
+
+        <a href="https://skribbl.io/"><img src="https://www.giantbomb.com/a/uploads/scale_medium/0/4647/3041674-thumbnail.png" alt="skribbl.io"></a>
+
+        <a href="https://crowdedcity.io/"><img src="https://play-lh.googleusercontent.com/HvcVIhfvIqWsobFVDbz6sxgh0sNXVYKGwjvq5uGiDaCyPi7hOSjqvQaWQbs793HvTyEf" alt="crowedcity.io"></a>
+
+        <a href="https://geometrydashlite.co/game/geometry-dash-lite/"><img src="https://assets-prd.ignimgs.com/2021/12/14/geometrydash-1639510868467.jpg?width=300&crop=1%3A1%2Csmart&auto=webp" alt="geometrydash"></a>
+
+        <a href="https://unblockedgamesworlds.github.io/monkey-mart/"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQlPrVwiZcpK3QHhhoXNShthwSKFH8onYGQ28PHjHuIq324XJ73RcMf0vOsrYJDsBP7KWo&usqp=CAU" alt="monkeymart"></a>
+
+        <a href="https://main.dd8vt524eqsk2.amplifyapp.com/projects/ovo/index.html"><img src="https://play-lh.googleusercontent.com/v7KwGdPjJGjJjRXn46sck4DwDBdKSeRzGN44CjiXUtKV0jjOi51Bt4wcXud0m-SkXg" alt="0v0"></a>
+
+        <a href="https://sandstrike.io/"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big_2x/co67y8.jpg" alt="sandstrick"></a>
+
+        <a href="https://www.chess.com/"><img src="https://images.chesscomfiles.com/uploads/v1/images_users/tiny_mce/PedroPinhata/phpZTvydV.png" alt="chess"></a>
+
+        <a href="https://bonk.io/"><img src="https://static-cdn.jtvnw.net/ttv-boxart/Bonk.io.jpg" alt="bonk.io"></a>
+
+        <a href="https://adfree3kh0.github.io/projects/tacticalassasin2/index.html"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfscQkIXQaYZIRlSqc9dlw0ueB6y0n1ciZ4ns_o8k5q_J0SLXhXx9jEyssWxQy74Ed7D4&usqp=CAU" alt="tacticalassassin2"></a>
+       
+        <a href="https://apes.io/"><img src="https://images.igdb.com/igdb/image/upload/t_cover_big/co67z0.jpg" alt="apes.io"></a>
+
+        <a href="https://g.vseigru.net/10/igra-onli-ap-2/"><img src="https://assets-prd.ignimgs.com/2023/07/06/onlyup-1688683974212.jpg" alt="onlyup"></a>
+
+        <a href="https://webglmath.github.io/basketball-stars/"><img src="https://red-ball4.com/data/image/basketball-legends-2020.jpg" alt="basketballlegends"></a>
+
+        <a href="https://gswitch.io/"><img src="https://iogames.games/data/image/game/g-switch-3.png" alt="gswitch.io"></a>
+
+        <a href="https://play2048.co/"><img src="https://2048.gg/assets/img/2048-game.png" alt="2048"></a>
+
+        <a href="https://hole-io.com/"><img src="https://lh3.googleusercontent.com/ghLzRRk39B2mFt-ME-wGGfwwM6r2rE76C7fTr-tS7MwdbBb_UThA-omsu3Nqanjp2w" alt="hole io"></a>
+
+        <a href="https://cbgamesdev.github.io/chilibowlflash/FNAF/2/index.html"><img src="https://preview.redd.it/etg6i1ltmx6z.png?width=640&crop=smart&auto=webp&s=d2a1b8ee790c2a9db756398bc24a05e1ccc3bdf0" alt="five-nights-at-freddys-3"></a>
+
+        <a href="https://princejs.com/"><img src="https://oklemenz.de/images/princejs.jpg" alt="princejs"></a>
+
+        <a href="https://gota.io"><img src="https://kevin.games/assets/images/games/gota-io.jpg" alt="gota,io"></a>
+
+        <a href="https://lolshot.io"><img src="https://iogamesio.org/upload/imgs/lolshot.io.png" alt="lolshot.io"></a>
+
+        <a href="https://freepacman.org/"><img src="https://store-images.s-microsoft.com/image/apps.15585.13969479857253626.55eac3f2-7b71-4cee-a637-94d8622e6bec.68eff3cb-3bd3-4968-9f36-a4b2e023bb88?mode=scale&q=90&h=300&w=300" alt="pacman"></a>
+
+        <a href="https://limax.io/"><img src="https://limax.io/img/logo_c2.png" alt="limax.io"></a>
+
+        <a href="https://webglmath.github.io/drift-hunters/"><img src="https://play-lh.googleusercontent.com/smo8Ln-PRREDGq_QjA-Nws7ZNJQhvQfUB2oA8XV0GW12uq6hqdhvwXCB2rdl6zjekcow" alt="drift hunter"></a>
+        <a href="https://yohoho.io/"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2GE2KNTL3ssxLmisiXVzoYTW4oSzSjw-ZkZ-MQpmEX1v7mUvyjDRXHoEI1ew4vhwyHiQ&usqp=CAU" alt="yohoho.io"></a>
+
+        <a href="https://narrow.one/"><img src="https://img.poki.com/cdn-cgi/image/quality=78,width=314,height=314,fit=cover,f=auto/30b08a69042ca7504d3e7f427f913f24.png" alt="narrow arow"></a>
+
+        <a href="https://1v1.school/"><img src="https://1v1lol.me/wp-content/uploads/sites/46/2024/03/cropped-1v1-lol-1.webp" alt="1v1.lol"></a>
+
+        <a href="https://tan-bread.glitch.me/"><img src="https://avatars.githubusercontent.com/u/39322951?s=280&v=4" alt="csgo cliker"></a>
+
+        <a href="https://adfree3kh0.github.io/projects/papery-planes/index.html"><img src="https://vengeio.online/upload/imgs/game/paper-flight.png" alt="papery-planes"></a>
+
+        <a href="https://g.vseigru.net/dasha1/igry-na-dvoikh/igra-na-dvoikh-fizika-boksa-2/"><img src="https://play-lh.googleusercontent.com/Issvta0rVWNoRltLSiu-C_9pEa4PaUipkjmRF5ZAmESnoyki7n9iOjIk4mtriYyc5CA" alt="boxing physics"></a>
+
+        <a href="https://games.engineering.com/tomb-runner-1/index.html"><img src="https://assets-prd.ignimgs.com/2023/04/02/templerun2-1680461914458.jpg" alt="temple run"></a>
+
+        <a href="https://main.dd8vt524eqsk2.amplifyapp.com/projects/jetpack-joyride/index.html"><img src="https://img.poki.com/cdn-cgi/image/quality=78,width=314,height=314,fit=cover,f=auto/d5d34cb9ce7b617b93338982aa0958ab.png" alt="jetpackjoyride"></a>
+
+        <a href="https://main.dd8vt524eqsk2.amplifyapp.com/projects/bitlife/index.html"><img src="https://cdn.mobygames.com/a0ebf086-ac06-11ed-b4f3-02420a000135.webp" alt="bitlife"></a>
+
+        <a href="https://static.gogy.com/assets/games/moto-x3m-v1/index.html"><img src="https://img.poki.com/cdn-cgi/image/quality=78,width=314,height=314,fit=cover,f=auto/2c6d5a46cdbceada277c870ce1c389ee.jpg" alt="moto x3m"></a>
+
+        <a href="https://buildnowgg.co/buildnow-gg.embed"><img src="https://s.cafebazaar.ir/images/icons/com.BattleLab.BuildNowGG-1b3ec49d-d254-405c-b7d2-7905e0add3f2_512x512.png?x-img=v1/resize,h_256,w_256,lossless_false/optimize" alt="build.gg"></a>
+
+        <a href="https://justfall.lol/"><img src="https://play-lh.googleusercontent.com/-0rSllZ8as88Jcs3iZ7-JCFyTb3YLB-HjR7bY7P6q_2MAswmDH4h1qNPfFiaZqzkkg" alt="justfall.lol"></a>
+
+        <a href="https://glitchyeet.github.io/TGC-Storage/G-Storage/granny.index.html"><img src="https://newzoo.com/wp-content/uploads/2024/03/game--granny.png" alt="granny"></a>
+       
+        <a href="https://phone.miboletonic.com/"><img src="https://www.youtube.com/img/desktop/yt_1200.png" alt="youtueb"></a>
+       
+    <a href="https://madalin-cars-multiplayer.com/webgl/M/mcm-webgl/index.html"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpI1TojSlDEC6NDg8rMTAJ1wvRNPCJxdIa2DyAzO-UuOE61gFaNyA6g_leaCOx7Ch7S7o&usqp=CAU" alt="repuls.io"></a>
+   
+    <a href="https://www.retrogames.cc/"><img src="https://cdn.vox-cdn.com/thumbor/83Cyk6KE7WC9v74jXxZi_HcwleM=/1400x1400/filters:format(png)/cdn.vox-cdn.com/uploads/chorus_asset/file/22809003/jude_buffum_210825_ecl1124_package_art.png" alt="retrogame"></a>
+   
+    <a href="https://www.webrcade.com/"><img src="https://avatars.githubusercontent.com/u/77417765?s=280&v=4" alt="webcade"></a>
+   
+    <a href="https://main.dd8vt524eqsk2.amplifyapp.com/projects/crossyroad/index.html"><img src="https://assets-prd.ignimgs.com/2023/03/04/crossyroad-1677896516603.jpg" alt="crossy road"></a>
+   
+    <a href="https://unblocked-games.s3.amazonaws.com/games/2023/unity3/drift-rider/unblocked.html"><img src="https://www.onlinegames.io/media/posts/553/Drift-Rider.jpg" alt="drift rider"></a>
+   
+    <a href="https://main.dd8vt524eqsk2.amplifyapp.com/projects/stickman-hook/index.html"><img src="https://play-lh.googleusercontent.com/yXqBI1Vb1b-xjwmXLE2T7FQbgHIxfvjze1b6jO2aLHfy8Y8ta7NFSEVqZoPHtM2Ajyrl" alt="Stickman hook"></a>
+   
+    <a href="https://main.dd8vt524eqsk2.amplifyapp.com/projects/soccer-random/index.html"><img src="https://play-lh.googleusercontent.com/G1PIlb6HWKSaDre0XpUcmKGps9T4iamsSlwrogB3EJzYv4bz0M2am4D17MtGzndaOOU" alt="soccer random"></a>
+   
+    <a href="https://armedforces.io/"><img src="https://cdn.now.gg/apps-content/com.nowgg.h5.pub483.app51325/game-tiles/armedforces-io.jpg" alt="Armed forces "></a>
+   
+    <a href="https://phantom.delusionz.xyz/"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTePcfKpdRrszEoqmiP_H9DiF2W9GSN0jEO36DrMhbnX39BHVNG0R1vKgi8m8r61sugFfI&usqp=CAU" alt="Armed forces "></a>
+
+       
+       <a href="https://poe.com/"><img src="https://store-images.s-microsoft.com/image/apps.20682.14595758191167852.9e3bd7c3-1f65-44a7-a9bc-d26532f1cc04.46dbabce-86cf-4ca7-b028-da0f60a7a838?h=464" alt="chatgpt"></a>
+
+
+        <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Get all anchor tags
+            var links = document.querySelectorAll("a");
+
+            // Add click event listener to each anchor tag
+            links.forEach(function(link) {
+                link.addEventListener("click", function(event) {
+                    event.preventDefault(); // Prevent default action
+
+                    // Check if the link has a valid href attribute
+                    if (link.href) {
+                        // Open the link's target in fullscreen mode
+                        var targetUrl = link.href;
+                        window.location.href = targetUrl; // Redirect to the link's target
+                        document.documentElement.requestFullscreen(); // Request fullscreen mode
+                    }
+                });
+            });
+        });
+    </script>
+        <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Get the input element and games container
+        var input = document.querySelector(".search input");
+        var gamesContainer = document.getElementById("games");
+
+        // Add input event listener to the search input
+        input.addEventListener("input", function(event) {
+            var searchTerm = event.target.value.toLowerCase(); // Get the input value and convert to lowercase
+
+            // Get all game links
+            var gameLinks = gamesContainer.querySelectorAll("a");
+
+            // Loop through each game link
+            gameLinks.forEach(function(link) {
+                // Get the alt attribute of the game image and convert to lowercase
+                var altText = link.querySelector("img").getAttribute("alt").toLowerCase();
+
+                // Check if the alt text contains the search term
+                if (altText.includes(searchTerm)) {
+                    // Show the game if it matches the search term
+                    link.style.display = "inline-block";
+                } else {
+                    // Hide the game if it doesn't match the search term
+                    link.style.display = "none";
+                }
+            });
+        });
+    });
+</script>
+</body>
+</html>
