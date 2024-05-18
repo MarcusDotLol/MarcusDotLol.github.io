@@ -116,22 +116,27 @@
             position: fixed;
             top: 0;
             right: 0;
-            background-color: #333;
+            background: linear-gradient(45deg, #333, #555);
             overflow-x: hidden;
             transition: 0.5s;
             padding-top: 60px;
             z-index: 1;
+            box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
         }
         .sidebar a {
             padding: 10px 15px;
             text-decoration: none;
             font-size: 18px;
             color: #fff;
-            display: block;
+            display: flex;
+            align-items: center;
             transition: 0.3s;
         }
         .sidebar a:hover {
             background-color: #575757;
+        }
+        .sidebar a i {
+            margin-right: 10px;
         }
         .sidebar .closebtn {
             position: absolute;
@@ -155,6 +160,8 @@
             background-color: #444;
         }
     </style>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
     <div class="options">
@@ -176,10 +183,10 @@
 
     <div id="mySidebar" class="sidebar">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="#">Home</a>
-        <a href="#">About</a>
-        <a href="#">Services</a>
-        <a href="#">Contact</a>
+        <a href="#"><i class="fas fa-home"></i> Home</a>
+        <a href="#"><i class="fas fa-info-circle"></i> About</a>
+        <a href="#"><i class="fas fa-concierge-bell"></i> Services</a>
+        <a href="#"><i class="fas fa-envelope"></i> Contact</a>
     </div>
     
     <button class="openbtn" onclick="openNav()">&#9776;</button>
@@ -235,11 +242,11 @@
         }
 
         function openNav() {
-            document.getElementById("mySidebar").style.width = "250px";
+            document.getElementById('mySidebar').style.width = '250px';
         }
 
         function closeNav() {
-            document.getElementById("mySidebar").style.width = "0";
+            document.getElementById('mySidebar').style.width = '0';
         }
 
         window.addEventListener('DOMContentLoaded', initialize);
