@@ -11,16 +11,14 @@
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            overflow: hidden;
             background-color: #000;
+            color: #fff;
         }
         .container {
             max-width: 800px;
             margin: 50px auto;
             padding: 20px;
             background-color: transparent;
-            color: #fff;
-            position: relative;
         }
         .profile {
             text-align: center;
@@ -33,27 +31,15 @@
             border: 4px solid #fff;
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
             margin-bottom: 20px;
-            display: block;
-            margin: 0 auto;
         }
         .profile h1 {
             font-size: 32px;
             margin-bottom: 10px;
         }
-        .profile h2 {
-            font-size: 24px;
-            color: #999;
-            margin-bottom: 20px;
-        }
         .profile p {
             font-size: 18px;
             color: #999;
             margin-bottom: 20px;
-        }
-        .typing-container {
-            display: inline-block;
-            position: relative;
-            white-space: nowrap;
         }
         .social-links {
             text-align: center;
@@ -177,6 +163,35 @@
             font-weight: bold;
             text-transform: uppercase;
         }
+        .store {
+            margin-top: 40px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        .store h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .store-section {
+            margin-bottom: 20px;
+        }
+        .store-section h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #ffb400;
+        }
+        .store-section p {
+            font-size: 18px;
+            margin: 5px 0;
+            padding-left: 20px;
+            text-indent: -20px;
+        }
+        .store-section strong {
+            color: #ffb400;
+        }
     </style>
 </head>
 <body>
@@ -188,7 +203,6 @@
     </div>
     <div class="container" id="profile-container" style="display: none;">
         <div class="profile">
-            <!-- Profile Content -->
             <img src="https://github.com/Marcus-lol/Main/blob/main/Images/Marcus.png?raw=true" alt="Profile Picture">
             <h1>Marcus</h1>
             <p>
@@ -197,71 +211,101 @@
             <p>You can DM me if I don't respond; I might be busy or sleeping. <br>
             <a href="https://www.youtube.com/watch?v=OPrLdJPmaiU" target="_blank">https://www.youtube.com/watch?v=OPrLdJPmaiU</a> <br>
             If you need to talk to me, DM me on Telegram.</p>
-            <!-- End of Profile Content -->
         </div>
 
         <div class="store">
             <h2>Store</h2>
-            <p><strong>INSTAGRAM :)</strong></p>
-            <p><strong>FOLLOWERS:</strong> Per 1k (ALL NEW SERVER)</p>
-            <p>Medium Includes a 30 Day Refill - $2</p>
-            <p>🔥 UHQ/HQ Includes a 365 day refill (1 Year +) - $3 🔥</p>
-            <p>Bulk Order (20k and Above) - Will be cheaper</p>
-            <p>High Quality/UHQ is recommended as the quality doesn’t drop as fast. Please note I do send extra to avoid drops.</p>
-            <p><strong>LIKES</strong></p>
-            <p>- 500 likes - $1</p>
-            <p>- 1k likes - $1.50</p>
-            <p>- 5k likes - $5</p>
-            <p>- 10k likes - $8</p>
-            <p>(Higher quantities can be discussed)</p>
-            <p><strong>VIDEO VIEWS</strong></p>
-            <p>- 1k views - $1</p>
-            <p>- 5k views - $3.50</p>
-            <p>- 10k views - $6.50</p>
-            <p>(Higher quantities can be discussed)</p>
-            <p><strong>STREAMS/VIEWS</strong></p>
-            <p>- 500 streams/views - $1</p>
-            <p>- 1k streams/views - $2</p>
-            <p>- 5k streams/views - $5</p>
-            <p>- 10k streams/views - $8</p>
-            <p>(Higher quantities can be discussed)</p>
-            <p><strong>INSTAGRAM SERVICES</strong></p>
-            <p>- Profile Optimization</p>
-            <p>- Post Scheduling</p>
-            <p>- Engagement Groups</p>
-            <p>- Hashtag Research</p>
-            <p><strong>STORY VIEWS</strong></p>
-            <p>- 500 views - $0.25</p>
-            <p>- 1k views - $0.50</p>
-            <p>- 5k views - $2</p>
-            <p>- 10k views - $2.50</p>
-            <p>(Higher quantities can be discussed)</p>
+            
+            <div class="store-section">
+                <h3>INSTAGRAM :)</h3>
+                <p><strong>FOLLOWERS:</strong> Per 1k (ALL NEW SERVER)</p>
+                <p>Medium Includes a 30 Day Refill - $2</p>
+                <p>🔥 UHQ/HQ Includes a 365 day refill (1 Year +) - $3 🔥</p>
+                <p>Bulk Order (20k and Above) - Will be cheaper</p>
+                <p>High Quality/UHQ is recommended as the quality doesn’t drop as fast. Please note I do send extra to avoid drops.</p>
+            </div>
+            
+            <div class="store-section">
+                <h3>LIKES</h3>
+                <p>- 500 likes - $1</p>
+                <p>- 1k likes - $1.50</p>
+                <p>- 5k likes - $5</p>
+                <p>- 10k likes - $8</p>
+                <p>(Higher quantities can be discussed)</p>
+            </div>
+            
+            <div class="store-section">
+                <h3>VIDEO VIEWS</h3>
+                <p>- 1k views - $1</p>
+                <p>- 5k views - $3.50</p>
+                <p>- 10k views - $6.50</p>
+                <p>(Higher quantities can be discussed)</p>
+            </div>
+            
+            <div class="store-section">
+                <h3>STREAMS/VIEWS</h3>
+                <p>- 500 streams/views - $1</p>
+                <p>- 1k streams/views - $2</p>
+                <p>- 5k streams/views - $5</p>
+                <p>- 10k streams/views - $8</p>
+                <p>(Higher quantities can be discussed)</p>
+            </div>
+            
+            <div class="store-section">
+                <h3>INSTAGRAM SERVICES</h3>
+                <p>- Profile Optimization</p>
+                <p>- Post Scheduling</p>
+                <p>- Engagement Groups</p>
+                <p>- Hashtag Research</p>
+            </div>
+            
+            <div class="store-section">
+                <h3>STORY VIEWS</h3>
+                <p>- 500 views - $0.25</p>
+                <p>- 1k views - $0.50</p>
+                <p>- 5k views - $2</p>
+                <p>- 10k views - $2.50</p>
+                <p>(Higher quantities can be discussed)</p>
+            </div>
 
-            <p><strong>TIKTOK</strong></p>
-            <p><strong>Follows</strong></p>
-            <p>Medium - $6</p>
-            <p>UHQ Real - $10</p>
-            <p>Bulk Orders Can Be Discussed</p>
-            <p><strong>Likes</strong></p>
-            <p>Medium - $2 Per 1k</p>
-            <p>UHQ Real Likes - $8 Per 1k</p>
-            <p><strong>Views</strong></p>
-            <p>1000 - $0.01</p>
-
-            <p><strong>ACCOUNT SERVICES</strong></p>
-            <p><strong>Spotify (Private Accounts)</strong></p>
-            <p>1M - $6</p>
-            <p>3M - $10</p>
-            <p>6M - $18</p>
-            <p>12M - $30</p>
-            <p><strong>Prime Video (Private Accounts)</strong></p>
-            <p>1M - $5</p>
-            <p>6M - $15</p>
-            <p>12M - $28</p>
-            <p><strong>YouTube Premium</strong></p>
-            <p>1M - $5</p>
-            <p>6M - $25</p>
-            <p>12M - $40</p>
+            <div class="store-section">
+                <h3>TikTok</h3>
+                <p><strong>FOLLOWS</strong></p>
+                <p>Medium - $6</p>
+                <p>UHQ Real - $10</p>
+                <p>Bulk Orders Can Be Discussed</p>
+                <p><strong>Likes</strong></p>
+                <p>Medium - $2 Per 1k</p>
+                <p>UHQ Real Likes - $8 Per 1k</p>
+                <p><strong>Views</strong></p>
+                <p>1000 - $0.01</p>
+            </div>
+            
+            <div class="store-section">
+                <h3>ACCOUNT SERVICES</h3>
+                
+                <div>
+                    <h4>Spotify (Private Accounts)</h4>
+                    <p>1M - $6</p>
+                    <p>3M - $10</p>
+                    <p>6M - $18</p>
+                    <p>12M - $30</p>
+                </div>
+                
+                <div>
+                    <h4>Prime Video (Private Accounts)</h4>
+                    <p>1M - $5</p>
+                    <p>6M - $15</p>
+                    <p>12M - $28</p>
+                </div>
+                
+                <div>
+                    <h4>YouTube Premium</h4>
+                    <p>1M - $5</p>
+                    <p>6M - $25</p>
+                    <p>12M - $40</p>
+                </div>
+            </div>
         </div>
 
         <div class="social-links">
